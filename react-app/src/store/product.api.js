@@ -11,12 +11,12 @@ export const deleteProductApi = async (product) => {
 
 export const updateProductApi = async (product) => {
   captains.log(product.id);
-  const response = await axios.put(`${API}/products/${product.id}`, product);
+  const response = await axios.put(`../${API}/products/${product.id}`, product);
   return parseItem(response, 200);
 };
 
 export const addProductApi = async (product) => {
-  const response = await axios.post(`${API}/products`, product);
+  const response = await axios.post(`../${API}/products`, product);
   return parseItem(response, 201);
 };
 
