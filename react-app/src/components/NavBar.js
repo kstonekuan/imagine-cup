@@ -35,6 +35,24 @@ const NavBar = (props) => {
           <NavLink to="/about" activeClassName="active-link">
             About
           </NavLink>
+          <NavLink to="/mentors" activeClassName="active-link">
+            Mentors
+          </NavLink>
+          <NavLink to="/mentees" activeClassName="active-link">
+            Mentees
+          </NavLink>
+          <NavLink to="/home" activeClassName="active-link">
+            Home
+          </NavLink>
+          <NavLink to="/profile" activeClassName="active-link">
+            Profile
+          </NavLink>
+          <NavLink to="/requests" activeClassName="active-link">
+            Requests
+          </NavLink>
+          <NavLink to="/sessions" activeClassName="active-link">
+            Sessions
+          </NavLink>
         </ul>
         {props.children}
       </nav>
