@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { ListHeader, ModalYesNo } from '../components';
-import ProductDetail from '../products/ProductDetail';
+import MentorDetail from './MentorDetail';
 import ProductList from '../products/ProductList';
 import useProducts from '../products/useProducts';
 
@@ -12,7 +12,6 @@ function Mentors({ history }) {
   const [productToDelete, setProductToDelete] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const {
-    addProduct,
     deleteProduct,
     getProducts,
     products,
@@ -35,15 +34,6 @@ function Mentors({ history }) {
     selectProduct(null);
     setProductToDelete(product);
     setShowModal(true);
-  }
-
-  function handleSaveProduct(product) {
-    if (selectedProduct && selectedProduct.name) {
-      captains.log(product);
-    } else {
-      addProduct(product);
-    }
-    handleCancelProduct();
   }
 
   function handleCloseModal() {
@@ -95,10 +85,9 @@ function Mentors({ history }) {
               path="/mentors/:id"
               component={() => {
                 return (
-                  <ProductDetail
+                  <MentorDetail
                     product={selectedProduct}
                     handleCancelProduct={handleCancelProduct}
-                    handleSaveProduct={handleSaveProduct}
                   />
                 );
               }}
