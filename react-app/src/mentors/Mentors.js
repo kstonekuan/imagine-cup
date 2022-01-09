@@ -26,7 +26,7 @@ function Mentors({ history }) {
   }, [getProducts]);
 
   function handleCancelProduct() {
-    history.push('/products');
+    history.push('/mentors');
     selectProduct(null);
     setProductToDelete(null);
   }
@@ -72,14 +72,14 @@ function Mentors({ history }) {
         title="Products"
         // handleAdd={addNewProduct}
         handleRefresh={handleRefresh}
-        routePath="/products"
+        routePath="/mentors"
       />
       <div className="columns is-multiline is-variable">
         <div className="column is-8">
           <Switch>
             <Route
               exact
-              path="/products"
+              path="/mentors"
               component={() => (
                 <ProductList
                   errorMessage={errorMessage}
@@ -92,7 +92,7 @@ function Mentors({ history }) {
             />
             <Route
               exact
-              path="/products/:id"
+              path="/mentors/:id"
               component={() => {
                 return (
                   <ProductDetail
