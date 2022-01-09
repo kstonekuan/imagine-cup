@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { ListHeader, ModalYesNo } from '../components';
 import MentorDetail from './MentorDetail';
-import ProductList from '../products/ProductList';
+import MentorList from './MentorList';
 import useProducts from '../products/useProducts';
 
 const captains = console;
@@ -71,7 +71,7 @@ function Mentors({ history }) {
               exact
               path="/mentors"
               component={() => (
-                <ProductList
+                <MentorList
                   errorMessage={errorMessage}
                   products={products}
                   selectedProduct={selectedProduct}
