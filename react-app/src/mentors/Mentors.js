@@ -69,7 +69,7 @@ function Mentors({ history }) {
   return (
     <div className="content-container">
       <ListHeader
-        title="Products"
+        title="Mentors"
         // handleAdd={addNewProduct}
         handleRefresh={handleRefresh}
         routePath="/mentors"
