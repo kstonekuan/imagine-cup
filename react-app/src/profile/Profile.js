@@ -6,7 +6,7 @@ import useProducts from '../products/useProducts';
 
 const captains = console;
 
-function Profile() {
+function Profile(props) {
   const {
     addProduct,
     getProducts,
@@ -43,7 +43,7 @@ function Profile() {
       <div className="columns is-multiline is-variable">
         <div className="column is-8">
           <ProfileDetail
-              product={selectedProduct}
+              product={props.route.userInfo}
               handleSaveProduct={handleSaveProduct}
             />
         </div>

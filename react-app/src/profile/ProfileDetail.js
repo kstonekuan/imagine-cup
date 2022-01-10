@@ -43,8 +43,8 @@ function ProfileDetail({
       </header>
       <div className="card-content">
         <div className="content">
-          {product.id && (
-            <InputDetail name="id" value={product.id} readOnly="true" />
+          {product.userId && (
+            <InputDetail name="id" value={product.userId} readOnly="true" />
           )}
           <InputDetail
             name="name"
