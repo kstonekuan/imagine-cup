@@ -67,7 +67,7 @@ class App extends Component {
                 <Route path="/mentors" component={Mentors} />
                 <Route path="/mentees" component={Mentees} />
                 <Route path="/home" component={Home} />
-                <Route path="/profile" component={Profile} userInfo={this.state.userInfo} />
+                <Route path="/profile" component={() => (<Profile userInfo={this.state.userInfo} />)} />
                 <Route path="/requests" component={Requests} />
                 <Route path="/sessions" component={Sessions} />
                 <Route exact path="**" component={NotFound} />
