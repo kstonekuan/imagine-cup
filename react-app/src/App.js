@@ -57,7 +57,7 @@ class App extends Component {
       <div>
         <HeaderBar />
         <div className="section columns">
-          <NavBar userInfo={this.userInfo} />
+          <NavBar userInfo={this.state.userInfo} />
           <main className="column">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
