@@ -5,19 +5,14 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { HeaderBar, NavBar, NotFound } from './components';
 import About from './About';
-import Mentees from './mentees/Mentees';
-import Home from './home/Home';
-import Profile from './profile/Profile';
-import Requests from './requests/Requests';
-import Sessions from './sessions/Sessions';
 
-const Products = withRouter(
-  lazy(() => import(/* webpackChunkName: "products" */ './products/Products'))
-);
-
-const Mentors = withRouter(
-  lazy(() => import(/* webpackChunkName: "products" */ './mentors/Mentors'))
-);
+const Products = withRouter(lazy(() => import('./products/Products')));
+const Mentors = withRouter(lazy(() => import('./mentors/Mentors')));
+const Mentees = withRouter(lazy(() => import('./mentees/Mentees')));
+const Profile = withRouter(lazy(() => import('./profile/Profile')));
+const Home = withRouter(lazy(() => import('./home/Home')));
+const Requests = withRouter(lazy(() => import('./requests/Requests')));
+const Sessions = withRouter(lazy(() => import('./sessions/Sessions')));
 
 class App extends Component {
   constructor(props) {
@@ -61,15 +56,15 @@ class App extends Component {
           <main className="column">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
-                <Redirect from="/" exact to="/products" />
+                <Redirect from="/" exact to="/home" />
                 <Route path="/products" component={Products} />
                 <Route path="/about" component={About} />
-                <Route path="/mentors" component={Mentors} />
-                <Route path="/mentees" component={Mentees} />
-                <Route path="/home" component={Home} />
+                <Route path="/mentors" component={() => (<Mentors userInfo={this.state.userInfo} />)} />
+                <Route path="/mentees" component={() => (<Mentees userInfo={this.state.userInfo} />)} />
+                <Route path="/home" component={() => (<Home userInfo={this.state.userInfo} />)} />
                 <Route path="/profile" component={() => (<Profile userInfo={this.state.userInfo} />)} />
-                <Route path="/requests" component={Requests} />
-                <Route path="/sessions" component={Sessions} />
+                <Route path="/requests" component={() => (<Requests userInfo={this.state.userInfo} />)} />
+                <Route path="/sessions" component={() => (<Sessions userInfo={this.state.userInfo} />)} />
                 <Route exact path="**" component={NotFound} />
               </Switch>
             </Suspense>
