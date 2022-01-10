@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, lazy, Suspense, useState, useEffect } from 'react';
 import 'bulma/css/bulma.css';
 import './styles.scss';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -20,12 +20,36 @@ const Mentors = withRouter(
 );
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    [this.userInfo, this.setUserInfo] = useState();
+
+    useEffect(() => {
+      (async () => {
+        this.setUserInfo(await this.getUserInfo());
+      })();
+    }, []);
+  };
+
+  async getUserInfo() {
+    try {
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      return clientPrincipal;
+    } catch (error) {
+      console.error('No profile could be found');
+      return undefined;
+    }
+  }
+
   render() {
     return (
       <div>
         <HeaderBar />
         <div className="section columns">
-          <NavBar />
+          <NavBar userInfo={this.userInfo} />
           <main className="column">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>

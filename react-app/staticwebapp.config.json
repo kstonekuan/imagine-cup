@@ -11,6 +11,10 @@
     {
       "route": "/api/products/*",
       "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/profile/*",
+      "allowedRoles": ["authenticated"]
     }
   ]
 }
