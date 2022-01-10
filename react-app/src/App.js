@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense, useState, useEffect } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import 'bulma/css/bulma.css';
 import './styles.scss';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -23,14 +23,22 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    [this.userInfo, this.setUserInfo] = useState();
-
-    useEffect(() => {
-      (async () => {
-        this.setUserInfo(await this.getUserInfo());
-      })();
-    }, []);
+    this.state = {
+      userInfo: undefined
+    }
   };
+
+  componentDidMount() {
+    (async () => {
+      this.setState({ userInfo: await this.getUserInfo()});
+    })();
+  }
+
+  componentDidUpdate() {
+    (async () => {
+      this.setState({ userInfo: await this.getUserInfo()});
+    })();
+  }
 
   async getUserInfo() {
     try {
