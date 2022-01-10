@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import { ListHeader, ModalYesNo } from '../components';
-import ProductDetail from '../products/ProductDetail';
+import { ListHeader } from '../components';
+import ProfileDetail from './ProfileDetail';
 import useProducts from '../products/useProducts';
 
 const captains = console;
 
-function Profile({ history }) {
-  const [productToDelete, setProductToDelete] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+function Profile() {
   const {
     addProduct,
-    deleteProduct,
     getProducts,
     // products,
-    selectProduct,
     selectedProduct,
     updateProduct,
     // error: errorMessage,
@@ -24,17 +20,6 @@ function Profile({ history }) {
     getProducts();
   }, [getProducts]);
 
-  function addNewProduct() {
-    selectProduct({});
-    history.push('/products/0');
-  }
-
-  function handleCancelProduct() {
-    history.push('/products');
-    selectProduct(null);
-    setProductToDelete(null);
-  }
-
   function handleSaveProduct(product) {
     if (selectedProduct && selectedProduct.name) {
       captains.log(product);
@@ -42,21 +27,9 @@ function Profile({ history }) {
     } else {
       addProduct(product);
     }
-    handleCancelProduct();
-  }
-
-  function handleCloseModal() {
-    setShowModal(false);
-  }
-
-  function handleDeleteFromModal() {
-    setShowModal(false);
-    deleteProduct(productToDelete);
-    handleCancelProduct();
   }
 
   function handleRefresh() {
-    handleCancelProduct();
     getProducts();
   }
 
@@ -64,27 +37,17 @@ function Profile({ history }) {
     <div className="content-container">
       <ListHeader
         title="Profile"
-        handleAdd={addNewProduct}
         handleRefresh={handleRefresh}
         routePath="/profile"
       />
       <div className="columns is-multiline is-variable">
         <div className="column is-8">
-          <ProductDetail
+          <ProfileDetail
               product={selectedProduct}
-              handleCancelProduct={handleCancelProduct}
               handleSaveProduct={handleSaveProduct}
             />
         </div>
       </div>
-
-      {showModal && (
-        <ModalYesNo
-          message={`Would you like to delete ${productToDelete.name}?`}
-          onNo={handleCloseModal}
-          onYes={handleDeleteFromModal}
-        />
-      )}
     </div>
   );
 }
