@@ -20,7 +20,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      profile: undefined
+      profile: undefined,
+      hasError: false
     }
   };
 
@@ -28,8 +29,12 @@ class App extends Component {
     this.setState({ profile: await getProfile()});
   }
 
-  async componentDidUpdate() {
-    this.setState({ profile: await getProfile()});
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    console.log(error);
+    console.log(info);
   }
 
   async handleSaveProfile(profile) {
@@ -37,6 +42,11 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
     return (
       <div>
         <HeaderBar />

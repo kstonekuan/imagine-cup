@@ -69,7 +69,7 @@ const NavBar = (props) => {
         </div>
       </nav>
       {
-        props.userInfo && (
+        props.profile && (
           <div>
             <div className="user">
               <p>Welcome</p>

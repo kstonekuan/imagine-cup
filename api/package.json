@@ -6,6 +6,8 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "mssql": "^7.3.0"
+  },
   "devDependencies": {}
 }
