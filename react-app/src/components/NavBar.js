@@ -29,11 +29,17 @@ const NavBar = (props) => {
       <nav className="menu">
         <p className="menu-label">Menu</p>
         <ul className="menu-list">
-          <NavLink to="/products" activeClassName="active-link">
-            Products
+        <NavLink to="/home" activeClassName="active-link">
+            Home
           </NavLink>
           <NavLink to="/about" activeClassName="active-link">
             About
+          </NavLink>
+          <NavLink to="/products" activeClassName="active-link">
+            Products
+          </NavLink>
+          <NavLink to="/profile" activeClassName="active-link">
+            Profile
           </NavLink>
           <NavLink to="/mentors" activeClassName="active-link">
             Mentors
@@ -41,17 +47,11 @@ const NavBar = (props) => {
           <NavLink to="/mentees" activeClassName="active-link">
             Mentees
           </NavLink>
-          <NavLink to="/home" activeClassName="active-link">
-            Home
-          </NavLink>
-          <NavLink to="/profile" activeClassName="active-link">
-            Profile
+          <NavLink to="/sessions" activeClassName="active-link">
+            Sessions
           </NavLink>
           <NavLink to="/requests" activeClassName="active-link">
             Requests
-          </NavLink>
-          <NavLink to="/sessions" activeClassName="active-link">
-            Sessions
           </NavLink>
         </ul>
         {props.children}

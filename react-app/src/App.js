@@ -23,6 +23,8 @@ class App extends Component {
       profile: undefined,
       hasError: false
     }
+
+    this.handleSaveProfile = this.handleSaveProfile.bind(this);
   };
 
   async componentDidMount() {
@@ -38,7 +40,13 @@ class App extends Component {
   }
 
   async handleSaveProfile(profile) {
-    this.setState({ profile: await updateProfile(profile)});
+    const res = await updateProfile(profile);
+    if (!res) {
+      this.setState({ hasError: true });
+    }
+    else {
+      this.setState({ profile: res});
+    }
   }
 
   render() {

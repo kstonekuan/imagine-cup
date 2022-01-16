@@ -19,7 +19,7 @@ export const createProfileApi = async (profile) => {
 
 export const readProfileApi = async (profile) => {
     const response = await axios.get(`${API}/profile?providerId=${profile.providerId}&provider=${profile.provider}`);
-    if (response.status !== 200 && response.status !== 404) {
+    if (response.status !== 200) {
         throw Error(response.message)
     }
     return response;
@@ -34,13 +34,13 @@ export const getProfile = async () => {
         providerId: payload.clientPrincipal.userId 
       };
 
-      const readProfileResponse = await readProfileApi(profile)
-      if (readProfileResponse.status === 200) {
-        profile = {...profile, ...readProfileResponse.data};
-      } else if (readProfileResponse.status === 404) {
-        const createProfileResponse = await createProfileApi(profile)
-        profile = {...profile, ...createProfileResponse.data};
+      let readProfileResponse = await readProfileApi(profile)
+      while (!readProfileResponse.data.doesExist) {
+        await createProfileApi(profile)
+        readProfileResponse = await readProfileApi(profile)
       }
+
+      profile = {...profile, ...readProfileResponse.data};
 
       return profile;
     } catch (error) {
@@ -51,8 +51,7 @@ export const getProfile = async () => {
 
 export const updateProfile = async (profile) => {
     try {
-      const response = await updateProfileApi(profile)
-      profile = {...profile, ...response.data};
+      await updateProfileApi(profile)
       return profile;
     } catch (error) {
       console.error('Could not update profile');

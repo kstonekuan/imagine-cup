@@ -13,7 +13,7 @@ function Profile(props) {
       <div className="columns is-multiline is-variable">
         <div className="column is-8">
           <ProfileDetail
-              product={props.profile}
+              profile={props.profile}
               handleSaveProfile={props.handleSaveProfile}
             />
         </div>

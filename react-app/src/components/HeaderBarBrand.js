@@ -5,16 +5,16 @@ const HeaderBarBrand = () => (
   <div className="navbar-brand">
     <a
       className="navbar-item"
-      href="https://reactjs.org/"
+      href="home"
       target="_blank"
       rel="noopener noreferrer"
     >
-      <i className="fab js-logo fa-react fa-2x" aria-hidden="true" />
+      <img src="../../public.favicon.ico" alt='logo'/>
     </a>
     <NavLink to="/" className="navbar-item nav-home">
-      <span className="brand-first">MY</span>
-      <span className="brand-second">MENTORING</span>
-      <span className="brand-third">LIST</span>
+      <span className="brand-first">ME</span>
+      <span className="brand-second">NT</span>
+      <span className="brand-third">Y</span>
     </NavLink>
   </div>
 );
