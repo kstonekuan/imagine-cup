@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = (props) => {
   // const [userInfo, setUserInfo] = useState();
-  const providers = ['twitter', 'github', 'aad'];
+  const providers = ['google', 'facebook', 'twitter', 'github', 'aad'];
   const redirect = window.location.pathname;
 
   // useEffect(() => {
@@ -73,8 +73,7 @@ const NavBar = (props) => {
           <div>
             <div className="user">
               <p>Welcome</p>
-              <p>{props.userInfo && props.userInfo.userDetails}</p>
-              <p>{props.userInfo && props.userInfo.identityProvider}</p>
+              <p>{props.profile && props.profile.name || 'Please set your details under profile' }</p>
             </div>
           </div>
         )

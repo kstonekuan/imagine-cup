@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { HeaderBar, NavBar, NotFound } from './components';
 import About from './About';
+import { getProfile, updateProfile } from './profile/ProfileApi';
 
 const Products = withRouter(lazy(() => import('./products/Products')));
 const Mentors = withRouter(lazy(() => import('./mentors/Mentors')));
@@ -19,32 +20,20 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userInfo: undefined
+      profile: undefined
     }
   };
 
-  componentDidMount() {
-    (async () => {
-      this.setState({ userInfo: await this.getUserInfo()});
-    })();
+  async componentDidMount() {
+    this.setState({ profile: await getProfile()});
   }
 
-  componentDidUpdate() {
-    (async () => {
-      this.setState({ userInfo: await this.getUserInfo()});
-    })();
+  async componentDidUpdate() {
+    this.setState({ profile: await getProfile()});
   }
 
-  async getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
+  async handleSaveProfile(profile) {
+    this.setState({ profile: await updateProfile(profile)});
   }
 
   render() {
@@ -52,19 +41,21 @@ class App extends Component {
       <div>
         <HeaderBar />
         <div className="section columns">
-          <NavBar userInfo={this.state.userInfo} />
+          <NavBar profile={this.state.profile} />
           <main className="column">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
                 <Redirect from="/" exact to="/home" />
-                <Route path="/products" component={Products} />
+                <Route path="/home" component={() => (<Home profile={this.state.profile} />)} />
                 <Route path="/about" component={About} />
-                <Route path="/mentors" component={() => (<Mentors userInfo={this.state.userInfo} />)} />
-                <Route path="/mentees" component={() => (<Mentees userInfo={this.state.userInfo} />)} />
-                <Route path="/home" component={() => (<Home userInfo={this.state.userInfo} />)} />
-                <Route path="/profile" component={() => (<Profile userInfo={this.state.userInfo} />)} />
-                <Route path="/requests" component={() => (<Requests userInfo={this.state.userInfo} />)} />
-                <Route path="/sessions" component={() => (<Sessions userInfo={this.state.userInfo} />)} />
+                <Route path="/products" component={Products} />
+
+                <Route path="/profile" component={() => (<Profile profile={this.state.profile} handleSaveProfile={this.handleSaveProfile} />)} />
+                <Route path="/mentors" component={() => (<Mentors profile={this.state.profile} />)} />
+                <Route path="/mentees" component={() => (<Mentees profile={this.state.profile} />)} />
+                <Route path="/requests" component={() => (<Requests profile={this.state.profile} />)} />
+                <Route path="/sessions" component={() => (<Sessions profile={this.state.profile} />)} />
+
                 <Route exact path="**" component={NotFound} />
               </Switch>
             </Suspense>

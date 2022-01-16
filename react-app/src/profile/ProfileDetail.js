@@ -1,68 +1,82 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 
 import { ButtonFooter, InputDetail } from '../components';
 
 function ProfileDetail({
-  product: initProduct,
-  handleSaveProduct,
-  history,
+  profile: initProfile,
+  handleSaveProfile,
 }) {
-  const [product, setProduct] = useState(Object.assign({}, initProduct));
-
-  useEffect(() => {
-    if (!product) {
-      history.push('/profile'); // no product, bail out of Details
-    }
-  }, [product, history]);
+  const [profile, setProfile] = useState(Object.assign({}, initProfile));
 
   function handleSave() {
-    const chgProduct = { ...product, id: product.id || null };
-    handleSaveProduct(chgProduct);
+    handleSaveProfile(profile);
   }
 
   function handleNameChange(e) {
-    setProduct({ ...product, name: e.target.value });
+    setProfile({ ...profile, name: e.target.value });
   }
 
-  function handleDescriptionChange(e) {
-    setProduct({ ...product, description: e.target.value });
+  function handleEmailChange(e) {
+    setProfile({ ...profile, email: e.target.value });
   }
 
-  function handleLinkChange(e) {
-    setProduct({ ...product, link: e.target.value });
+  function handleMobileChange(e) {
+    setProfile({ ...profile, mobile: e.target.value });
+  }
+
+  function handleSummaryChange(e) {
+    setProfile({ ...profile, summary: e.target.value });
+  }
+
+  function handleSocialChange(e) {
+    setProfile({ ...profile, social: e.target.value });
   }
 
   return (
     <div className="card edit-detail">
       <header className="card-header">
         <p className="card-header-title">
-          {product.name}
+          {profile.name}
           &nbsp;
         </p>
       </header>
       <div className="card-content">
         <div className="content">
-          {product.userId && (
-            <InputDetail name="id" value={product.userId} readOnly="true" />
-          )}
+          <InputDetail 
+            name="id" 
+            value={profile.id} 
+            readOnly="true" 
+          />
           <InputDetail
             name="name"
-            value={product.name}
+            value={profile.name}
             placeholder="Alan Turing"
             onChange={handleNameChange}
           />
           <InputDetail
-            name="description"
-            value={product.description}
-            placeholder="Professional CS Wizard"
-            onChange={handleDescriptionChange}
+            name="email"
+            value={profile.email}
+            placeholder="alan@gmail.com"
+            onChange={handleEmailChange}
           />
           <InputDetail
-            name="links"
-            value={product.description}
-            placeholder="https://mentor.zoom.us/alan"
-            onChange={handleLinkChange}
+            name="mobile"
+            value={profile.mobile}
+            placeholder="987654321"
+            onChange={handleMobileChange}
+          />
+          <InputDetail
+            name="summary"
+            value={profile.summary}
+            placeholder="Professional CS Wizard"
+            onChange={handleSummaryChange}
+          />
+          <InputDetail
+            name="social"
+            value={profile.social}
+            placeholder="LinkedIn, WhatsApp, Telegram..."
+            onChange={handleSocialChange}
           />
         </div>
       </div>
