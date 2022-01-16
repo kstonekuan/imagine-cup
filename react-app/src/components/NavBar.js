@@ -59,13 +59,13 @@ const NavBar = (props) => {
       <nav className="menu auth">
         <p className="menu-label">Auth</p>
         <div className="menu-list auth">
-          {!props.userInfo &&
+          {!props.profile &&
             providers.map((provider) => (
               <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
                 {provider}
               </a>
             ))}
-          {props.userInfo && <a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}
+          {props.profile && <a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}
         </div>
       </nav>
       {

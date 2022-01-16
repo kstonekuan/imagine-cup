@@ -9,10 +9,10 @@ module.exports = async function (context, req) {
 
         const profileData = await pool.query(`
             insert into Profiles (${providers.PROVIDERS_MAP[req.body.provider]})
-            values '${req.body.providerId}';
+            values ('${req.body.providerId}');
         `);
 
-        console.log(profileData);
+        context.log(profileData);
 
         context.res = {
             status: 201,        

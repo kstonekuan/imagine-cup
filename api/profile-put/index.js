@@ -12,7 +12,7 @@ module.exports = async function (context, req) {
             where ProfileId = ${req.params.id};
         `);
 
-        console.log(profileData);
+        context.log(profileData);
 
         context.res = {
             status: 200,        

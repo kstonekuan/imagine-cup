@@ -8,13 +8,13 @@ module.exports = async function (context, req) {
         const pool = await sql.connect(AZURE_CONN_STRING);
 
         const profileData = await pool.query(`
-            select * from Profiles
+            select * from [dbo].[Profiles]
             where ${providers.PROVIDERS_MAP[req.query.provider]} = '${req.query.providerId}';
         `);
 
-        console.log(profileData);
+        context.log(profileData);
     
-        if (profileData.recordset.length === 1) {
+        if (profileData.recordset.length > 0) {
             context.res = {        
                 body: JSON.parse(profileData.recordset[0])
             };
@@ -25,6 +25,7 @@ module.exports = async function (context, req) {
             }
         }
     } catch (error) {
+        context.log(error);
         context.res.status(500).send(error);
     }
     

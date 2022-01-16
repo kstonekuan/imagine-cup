@@ -19,7 +19,7 @@ export const createProfileApi = async (profile) => {
 
 export const readProfileApi = async (profile) => {
     const response = await axios.get(`${API}/profile?providerId=${profile.providerId}&provider=${profile.provider}`);
-    if (response.status !== 200 | response.status !== 404) {
+    if (response.status !== 200 && response.status !== 404) {
         throw Error(response.message)
     }
     return response;
