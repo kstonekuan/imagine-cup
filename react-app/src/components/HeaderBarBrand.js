@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from '../logo.png';
 
 const HeaderBarBrand = () => (
   <div className="navbar-brand">
@@ -9,7 +10,7 @@ const HeaderBarBrand = () => (
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="../../public/favicon.ico" alt='logo'/>
+      <img src={logo} alt='logo'/>
     </a>
     <NavLink to="/" className="navbar-item nav-home">
       <span className="brand-first">ME</span>
