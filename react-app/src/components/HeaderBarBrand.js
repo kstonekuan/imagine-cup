@@ -9,7 +9,7 @@ const HeaderBarBrand = () => (
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="../../public.favicon.ico" alt='logo'/>
+      <img src="../../public/favicon.ico" alt='logo'/>
     </a>
     <NavLink to="/" className="navbar-item nav-home">
       <span className="brand-first">ME</span>
