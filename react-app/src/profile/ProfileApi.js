@@ -30,8 +30,8 @@ export const getProfile = async () => {
       const authResponse = await fetch('/.auth/me');
       const payload = await authResponse.json();
       let profile = {
-        provider: payload.identityProvider,
-        providerId: payload.userId 
+        provider: payload.clientPrincipal.identityProvider,
+        providerId: payload.clientPrincipal.userId 
       };
 
       const readProfileResponse = await readProfileApi(profile)
