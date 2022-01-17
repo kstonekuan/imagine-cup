@@ -1,49 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router';
 
 import { ButtonFooter, TextDetail } from '../components';
 
 function MentorDetail({
-  product: initProduct,
-  handleCancelProduct,
-  history,
+  mentor,
+  handleExitMentor,
 }) {
-  const [product] = useState(Object.assign({}, initProduct));
-
-  useEffect(() => {
-    if (!product) {
-      history.push('/mentors'); // no product, bail out of Details
-    }
-  }, [product, history]);
 
   return (
     <div className="card edit-detail">
       <header className="card-header">
         <p className="card-header-title">
-          {product.name}
+          {mentor.name}
           &nbsp;
         </p>
       </header>
       <div className="card-content">
         <div className="content">
-          {product.id && (
-            <TextDetail name="id" value={product.id} />
-          )}
           <TextDetail
             name="name"
-            value={product.name}
+            value={mentor.name}
           />
           <TextDetail
-            name="description"
-            value={product.description}
+            name="email"
+            value={mentor.email}
           />
           <TextDetail
-            name="links"
-            value={product.quantity}
+            name="mobile"
+            value={mentor.mobile}
           />
           <TextDetail
-            name="sessions"
-            value={product.quantity}
+            name="summary"
+            value={mentor.summary}
+          />
+          <TextDetail
+            name="Social"
+            value={mentor.social}
           />
         </div>
       </div>
@@ -51,8 +44,8 @@ function MentorDetail({
         <ButtonFooter
           className="cancel-button"
           iconClasses="fas fa-undo"
-          onClick={handleCancelProduct}
-          label="Close"
+          onClick={handleExitMentor}
+          label="Exit"
         />
       </footer>
     </div>

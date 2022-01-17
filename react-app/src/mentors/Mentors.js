@@ -4,35 +4,27 @@ import { Route, Switch } from 'react-router-dom';
 import { ListHeader, ModalYesNo } from '../components';
 import MentorDetail from './MentorDetail';
 import MentorList from './MentorList';
-import useProducts from '../products/useProducts';
+import { getMentors } from './MentorsApi';
 
-const captains = console;
-
-function Mentors({ history }) {
-  const [productToDelete, setProductToDelete] = useState(null);
+function Mentors(props) {
+  const [mentorToDelete, setMentorToDelete] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const {
-    deleteProduct,
-    getProducts,
-    products,
-    selectProduct,
-    selectedProduct,
-    error: errorMessage,
-  } = useProducts();
+  const [mentors, setMentors] = useState([]);
+  const [selectedMentor, setSelectedMentor] = useState(null);
 
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    setMentors(getMentors(props.profile));
+  }, [mentors]);
 
-  function handleCancelProduct() {
-    history.push('/mentors');
-    selectProduct(null);
-    setProductToDelete(null);
+  function handleExitMentor() {
+    props.history.push('/mentors');
+    setSelectedMentor(null);
+    setMentorToDelete(null);
   }
 
-  function handleDeleteProduct(product) {
-    selectProduct(null);
-    setProductToDelete(product);
+  function handleDeleteMentor(mentor) {
+    setSelectedMentor(null);
+    setMentorToDelete(mentor);
     setShowModal(true);
   }
 
@@ -42,18 +34,18 @@ function Mentors({ history }) {
 
   function handleDeleteFromModal() {
     setShowModal(false);
-    deleteProduct(productToDelete);
-    handleCancelProduct();
+    // deleteProduct(productToDelete);
+    handleExitMentor();
   }
 
-  function handleSelectProduct(selectedProduct) {
-    selectProduct(selectedProduct);
-    captains.log(`you selected ${selectedProduct.name}`);
+  function handleSelectMentor(selected) {
+    setSelectedMentor(selected);
+    console.log(`you selected ${selected.name}`);
   }
 
   function handleRefresh() {
-    handleCancelProduct();
-    getProducts();
+    handleExitMentor();
+    setMentors(getMentors(props.profile));
   }
 
   return (
@@ -72,11 +64,11 @@ function Mentors({ history }) {
               path="/mentors"
               component={() => (
                 <MentorList
-                  errorMessage={errorMessage}
-                  products={products}
-                  selectedProduct={selectedProduct}
-                  handleSelectProduct={handleSelectProduct}
-                  handleDeleteProduct={handleDeleteProduct}
+                  errorMessage={null}
+                  mentors={mentors}
+                  selectedMentor={selectedMentor}
+                  handleSelectMentor={handleSelectMentor}
+                  handleDeleteMentor={handleDeleteMentor}
                 />
               )}
             />
@@ -86,8 +78,8 @@ function Mentors({ history }) {
               component={() => {
                 return (
                   <MentorDetail
-                    product={selectedProduct}
-                    handleCancelProduct={handleCancelProduct}
+                    mentor={selectedMentor}
+                    handleExitMentor={handleExitMentor}
                   />
                 );
               }}
@@ -98,7 +90,7 @@ function Mentors({ history }) {
 
       {showModal && (
         <ModalYesNo
-          message={`Would you like to remove ${productToDelete.name} as your mentor?`}
+          message={`Would you like to remove ${mentorToDelete.name} as your mentor?`}
           onNo={handleCloseModal}
           onYes={handleDeleteFromModal}
         />

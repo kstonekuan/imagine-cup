@@ -4,36 +4,36 @@ import { withRouter } from 'react-router';
 import { ButtonFooter, CardContent } from '../components';
 
 function ProductList({
-  handleDeleteProduct,
-  handleSelectProduct,
-  products,
+  handleDeleteMentor,
+  handleSelectMentor,
+  mentors,
   history,
   errorMessage,
 }) {
-  function selectProduct(e) {
-    const product = getSelectedProduct(e);
-    handleSelectProduct(product);
-    history.push(`/mentors/${product.id}`);
+  function selectMentor(e) {
+    const mentor = getSelectedMentor(e);
+    handleSelectMentor(mentor);
+    history.push(`/mentors/${mentor.id}`);
   }
 
   function deleteProduct(e) {
-    const product = getSelectedProduct(e);
-    handleDeleteProduct(product);
+    const mentor = getSelectedMentor(e);
+    handleDeleteMentor(mentor);
   }
 
-  function getSelectedProduct(e) {
+  function getSelectedMentor(e) {
     const index = +e.currentTarget.dataset.index;
-    return products[index];
+    return mentors[index];
   }
 
   return (
     <div>
       {errorMessage && <div>{errorMessage}</div>}
-      {(!products || !products.length) && !errorMessage && (
+      {(!mentors || !mentors.length) && !errorMessage && (
         <div>Loading data ...</div>
       )}
       <ul className="list">
-        {products.map((product, index) => (
+        {mentors.map((product, index) => (
           <li key={product.id} role="presentation">
             <div className="card">
               <CardContent
@@ -52,7 +52,7 @@ function ProductList({
                 <ButtonFooter
                   className="edit-item"
                   iconClasses="fas fa-edit"
-                  onClick={selectProduct}
+                  onClick={selectMentor}
                   label="View"
                   dataIndex={index}
                   dataId={product.id}
