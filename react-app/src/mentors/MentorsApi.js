@@ -14,7 +14,7 @@ export const createMentorApi = async (mentor, profile) => {
         mentorId: mentor.id,
         menteeId: profile.id
     };
-    const response = await axios.post(`${API}/profile`, reqBody);
+    const response = await axios.post(`${API}/mentors`, reqBody);
     if (response.status !== 201) {
         throw Error(response.message)
     }
