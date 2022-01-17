@@ -33,12 +33,12 @@ function ProductList({
         <div>Loading data ...</div>
       )}
       <ul className="list">
-        {mentors.map((product, index) => (
-          <li key={product.id} role="presentation">
+        {mentors.map((mentor, index) => (
+          <li key={mentor.id} role="presentation">
             <div className="card">
               <CardContent
-                name={product.name}
-                description={product.description}
+                name={mentor.name}
+                description={mentor.summary}
               />
               <footer className="card-footer">
                 <ButtonFooter
@@ -47,7 +47,7 @@ function ProductList({
                   onClick={deleteProduct}
                   label="Delete"
                   dataIndex={index}
-                  dataId={product.id}
+                  dataId={mentor.id}
                 />
                 <ButtonFooter
                   className="edit-item"
@@ -55,7 +55,7 @@ function ProductList({
                   onClick={selectMentor}
                   label="View"
                   dataIndex={index}
-                  dataId={product.id}
+                  dataId={mentor.id}
                 />
               </footer>
             </div>

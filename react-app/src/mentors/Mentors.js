@@ -14,6 +14,7 @@ function Mentors(props) {
 
   useEffect(() => {
     setMentors(getMentors(props.profile));
+    console.log(mentors);
   }, [mentors]);
 
   function handleExitMentor() {
