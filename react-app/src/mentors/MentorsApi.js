@@ -11,11 +11,11 @@ export const readMentorsApi = async (profile) => {
 
 export const getMentors = async (profile) => {
     try {
-      const resp = await readMentorsApi(profile);
-
-      return resp;
+        const resp = await readMentorsApi(profile);
+        console.log(resp);
+        return resp.data;
     } catch (error) {
-      console.error('Mentors could not be found');
-      return undefined;
+        console.error('Mentors could not be found');
+        return undefined;
     }
 };

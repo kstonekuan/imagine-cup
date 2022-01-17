@@ -29,9 +29,9 @@ module.exports = async function (context, req) {
                 social: data.Social,
                 summary: data.Summary
             };
-        }
+        };
 
-        context.res.status(200).json(resp)
+        context.res.status(200).json(resp);
     } catch (error) {
         context.log(error);
         context.res.status(500).send(error);

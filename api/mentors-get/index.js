@@ -22,16 +22,16 @@ module.exports = async function (context, req) {
 
         res.recordset.forEach(data => {
             resp.push({
-                id: data["p.ProfileId"],
-                name: data["p.Name"],
-                email: data["p.Email"],
-                mobile: data["p.Mobile"],
-                social: data["p.Social"],
-                summary: data["p.Summary"]
+                id: data["MentorId"],
+                name: data["Name"],
+                email: data["Email"],
+                mobile: data["Mobile"],
+                social: data["Social"],
+                summary: data["Summary"]
             });
         });
 
-        context.res.status(200).json(resp)
+        context.res.status(200).json(resp);
     } catch (error) {
         context.log(error);
         context.res.status(500).send(error);

@@ -9,6 +9,7 @@ function ProductList({
   mentors,
   history,
   errorMessage,
+  isLoading,
 }) {
   function selectMentor(e) {
     const mentor = getSelectedMentor(e);
@@ -16,7 +17,7 @@ function ProductList({
     history.push(`/mentors/${mentor.id}`);
   }
 
-  function deleteProduct(e) {
+  function deleteMentor(e) {
     const mentor = getSelectedMentor(e);
     handleDeleteMentor(mentor);
   }
@@ -29,11 +30,14 @@ function ProductList({
   return (
     <div>
       {errorMessage && <div>{errorMessage}</div>}
-      {(!mentors || !mentors.length) && !errorMessage && (
+      {(!mentors || isLoading) && !errorMessage && (
         <div>Loading data ...</div>
       )}
+      {!isLoading && mentors && !mentors.length && (
+        <div>No mentors yet</div>
+      )}
       <ul className="list">
-        {mentors.map((mentor, index) => (
+        {!isLoading && mentors && mentors.map((mentor, index) => (
           <li key={mentor.id} role="presentation">
             <div className="card">
               <CardContent
@@ -44,7 +48,7 @@ function ProductList({
                 <ButtonFooter
                   className="delete-item"
                   iconClasses="fas fa-trash"
-                  onClick={deleteProduct}
+                  onClick={deleteMentor}
                   label="Delete"
                   dataIndex={index}
                   dataId={mentor.id}

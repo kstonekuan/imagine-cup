@@ -9,13 +9,15 @@ import { getMentors } from './MentorsApi';
 function Mentors(props) {
   const [mentorToDelete, setMentorToDelete] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [mentors, setMentors] = useState([]);
+  const [mentors, setMentors] = useState(null);
   const [selectedMentor, setSelectedMentor] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setMentors(getMentors(props.profile));
+  useEffect(async () => {
+    setMentors(await getMentors(props.profile));
     console.log(mentors);
-  }, [mentors]);
+    setIsLoading(false);
+  }, []);
 
   function handleExitMentor() {
     props.history.push('/mentors');
@@ -44,9 +46,9 @@ function Mentors(props) {
     console.log(`you selected ${selected.name}`);
   }
 
-  function handleRefresh() {
+  async function handleRefresh() {
     handleExitMentor();
-    setMentors(getMentors(props.profile));
+    setMentors(await getMentors(props.profile));
   }
 
   return (
@@ -70,6 +72,7 @@ function Mentors(props) {
                   selectedMentor={selectedMentor}
                   handleSelectMentor={handleSelectMentor}
                   handleDeleteMentor={handleDeleteMentor}
+                  isLoading={isLoading}
                 />
               )}
             />
