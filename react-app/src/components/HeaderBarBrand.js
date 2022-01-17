@@ -14,8 +14,8 @@ const HeaderBarBrand = () => (
     </a>
     <NavLink to="/" className="navbar-item nav-home">
       <span className="brand-first">ME</span>
-      <span className="brand-second">NT</span>
-      <span className="brand-third">Y</span>
+      <span className="brand-second">N</span>
+      <span className="brand-third">TY</span>
     </NavLink>
   </div>
 );
