@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Modal from './Modal';
-import InputDetail from './InputDetail';
 
 const ModalYesNo = ({ message, onYes, onNo, handleInput }) => (
     <Modal>
@@ -12,8 +11,9 @@ const ModalYesNo = ({ message, onYes, onNo, handleInput }) => (
                     <p className="modal-card-title">Confirm</p>
                 </header>
                 <section className="modal-card-body">{message}</section>
-                <InputDetail
-                    name="input"
+                <input
+                    className="input"
+                    type="text"
                     onChange={handleInput}
                 />
                 <footer className="modal-card-foot card-footer">

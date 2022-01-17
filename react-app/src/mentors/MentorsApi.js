@@ -37,7 +37,7 @@ export const addMentor = async (mentor, profile) => {
         await createMentorApi(mentor, profile)
         return mentor;
       } catch (error) {
-        console.error('Could not update profile');
+        console.error('Could not add mentor');
         return undefined;
       }
 }
