@@ -65,6 +65,7 @@ function Mentors(props) {
     }
     setMentorToAdd(null);
     setShowAddModal(false);
+    setMentors(await getMentors(props.profile));
   }
 
   function handleInputFromModal(e) {
