@@ -115,7 +115,7 @@ function Mentors(props) {
 
       {showDeleteModal && (
         <ModalYesNo
-          message={`Would you like to remove ${mentorToDelete.name} as your mentor?`}
+          message={`Would you like to remove ${mentorToDelete.name} as an active mentor?`}
           onNo={handleCloseModal}
           onYes={handleDeleteFromModal}
         />

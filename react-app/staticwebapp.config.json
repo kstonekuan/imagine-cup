@@ -9,15 +9,15 @@
       "statusCode": 404
     },
     {
-      "route": "/api/products/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/api/profile/*",
       "allowedRoles": ["authenticated"]
     },
     {
       "route": "/profile/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api/mentors/*",
       "allowedRoles": ["authenticated"]
     }
   ]

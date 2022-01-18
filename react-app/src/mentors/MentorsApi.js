@@ -21,6 +21,17 @@ export const createMentorApi = async (mentor, profile) => {
     return response;
 };
 
+export const updateMentorApi = async (mentor, isActive) => {
+    const reqBody = {
+        isActive: isActive
+    };
+    const response = await axios.post(`${API}/mentors/${mentor.connectionId}`, reqBody);
+    if (response.status !== 200) {
+        throw Error(response.message)
+    }
+    return response;
+};
+
 export const getMentors = async (profile) => {
     try {
         const resp = await readMentorsApi(profile);
@@ -34,10 +45,20 @@ export const getMentors = async (profile) => {
 
 export const addMentor = async (mentor, profile) => {
     try {
-        await createMentorApi(mentor, profile)
+        await createMentorApi(mentor, profile);
         return mentor;
       } catch (error) {
         console.error('Could not add mentor');
         return undefined;
       }
+}
+
+export const removeMentor = async (mentor) => {
+    try {
+        await updateMentorApi(mentor, false);
+        return mentor
+    } catch (error) {
+        console.error('Could not remove mentor');
+        return undefined;
+    }
 }

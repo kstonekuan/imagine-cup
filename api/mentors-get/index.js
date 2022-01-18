@@ -27,7 +27,8 @@ module.exports = async function (context, req) {
                 email: data["Email"],
                 mobile: data["Mobile"],
                 social: data["Social"],
-                summary: data["Summary"]
+                summary: data["Summary"],
+                connectionId: data["ConnectionId"]
             });
         });
 

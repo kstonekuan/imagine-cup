@@ -49,7 +49,7 @@ function ProductList({
                   className="delete-item"
                   iconClasses="fas fa-trash"
                   onClick={deleteMentor}
-                  label="Delete"
+                  label="Remove"
                   dataIndex={index}
                   dataId={mentor.id}
                 />
