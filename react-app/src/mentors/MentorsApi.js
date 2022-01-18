@@ -25,7 +25,7 @@ export const updateMentorApi = async (mentor, isActive) => {
     const reqBody = {
         isActive: isActive
     };
-    const response = await axios.post(`${API}/mentors/${mentor.connectionId}`, reqBody);
+    const response = await axios.put(`${API}/mentors/${mentor.connectionId}`, reqBody);
     if (response.status !== 200) {
         throw Error(response.message)
     }
