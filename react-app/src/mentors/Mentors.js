@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ListHeader, ModalYesNo, ModalInput } from '../components';
 import MentorDetail from './MentorDetail';
 import MentorList from './MentorList';
-import { getMentors, addMentor } from './MentorsApi';
+import { getMentors, addMentor, removeMentor } from './MentorsApi';
 
 function Mentors(props) {
   const [mentorToDelete, setMentorToDelete] = useState(null);
@@ -21,10 +21,13 @@ function Mentors(props) {
     setIsLoading(false);
   }, []);
 
-  function handleExitMentor() {
+  async function handleExitMentor() {
     props.history.push('/mentors');
     setSelectedMentor(null);
     setMentorToDelete(null);
+    setMentorToAdd(null);
+    handleCloseModal();
+    setMentors(await getMentors(props.profile));
   }
 
   function handleDeleteMentor(mentor) {
@@ -38,20 +41,17 @@ function Mentors(props) {
     setShowAddModal(false);
   }
 
-  function handleDeleteFromModal() {
-    setShowDeleteModal(false);
-    // deleteProduct(productToDelete);
+  async function handleDeleteFromModal() {
+    const res = await removeMentor(mentorToDelete);
+    if (!res) {
+      // Failure msg
+    }
     handleExitMentor();
   }
 
   function handleSelectMentor(selected) {
     setSelectedMentor(selected);
     console.log(`you selected ${selected.name}`);
-  }
-
-  async function handleRefresh() {
-    handleExitMentor();
-    setMentors(await getMentors(props.profile));
   }
 
   function handleAdd() {
@@ -63,9 +63,7 @@ function Mentors(props) {
     if (!res) {
       // Failure msg
     }
-    setMentorToAdd(null);
-    setShowAddModal(false);
-    setMentors(await getMentors(props.profile));
+    handleExitMentor();
   }
 
   function handleInputFromModal(e) {
@@ -77,7 +75,7 @@ function Mentors(props) {
       <ListHeader
         title="Mentors"
         handleAdd={handleAdd}
-        handleRefresh={handleRefresh}
+        handleRefresh={handleExitMentor}
         routePath="/mentors"
       />
       <div className="columns is-multiline is-variable">
