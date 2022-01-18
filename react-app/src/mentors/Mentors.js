@@ -23,10 +23,10 @@ function Mentors(props) {
 
   async function handleExitMentor() {
     props.history.push('/mentors');
+    handleCloseModal();
     setSelectedMentor(null);
     setMentorToDelete(null);
     setMentorToAdd(null);
-    handleCloseModal();
     setMentors(await getMentors(props.profile));
   }
 
