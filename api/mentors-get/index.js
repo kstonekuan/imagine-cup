@@ -7,12 +7,25 @@ module.exports = async function (context, req) {
     try {
         const pool = await sql.connect(AZURE_CONN_STRING);
 
+        let srcCol, dstCol;
+
+        if (req.query.isMentor === 'true') {
+            srcCol = "MentorId";
+            dstCol = "MenteeId";
+        } else if (req.query.isMentor === 'false') {
+            srcCol = "MenteeId";
+            dstCol = "MentorId";
+        } else {
+            context.res.status(400).send("Inavlid value in 'isMentor' query param.");
+            return;
+        };
+
         const res = await pool.query(`
             select *
             from Profiles as p
             join Connections as c
-            on p.ProfileId=c.MentorId
-            where c.MenteeId = '${req.query.id}'
+            on p.ProfileId=c.${dstCol}
+            where c.${srcCol} = '${req.query.id}'
             and c.IsActive = 1;
         `);
 
@@ -22,7 +35,7 @@ module.exports = async function (context, req) {
 
         res.recordset.forEach(data => {
             resp.push({
-                id: data["MentorId"],
+                id: data[`${dstCol}`],
                 name: data["Name"],
                 email: data["Email"],
                 mobile: data["Mobile"],

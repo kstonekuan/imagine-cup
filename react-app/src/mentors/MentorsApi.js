@@ -2,7 +2,7 @@ import axios from 'axios';
 import API from '../config';
 
 export const readMentorsApi = async (profile) => {
-    const response = await axios.get(`${API}/mentors?id=${profile.id}`);
+    const response = await axios.get(`${API}/mentors?id=${profile.id}&isMentor=false`);
     if (response.status !== 200) {
         throw Error(response.message)
     }
