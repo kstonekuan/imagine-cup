@@ -75,14 +75,14 @@ function Mentors(props) {
         title={props.title}
         handleAdd={handleAdd}
         handleRefresh={handleExitMentor}
-        routePath="/mentors"
+        routePath={`/${props.path}`}
       />
       <div className="columns is-multiline is-variable">
         <div className="column is-8">
           <Switch>
             <Route
               exact
-              path="/mentors"
+              path={`/${props.path}`}
               component={() => (
                 <MentorList
                   errorMessage={null}
@@ -96,7 +96,7 @@ function Mentors(props) {
             />
             <Route
               exact
-              path="/mentors/:id"
+              path={`/${props.path}/:id`}
               component={() => {
                 return (
                   <MentorDetail
