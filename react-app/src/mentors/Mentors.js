@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { ListHeader, ModalYesNo, ModalInput } from '../components';
 import MentorDetail from './MentorDetail';
 import MentorList from './MentorList';
-import { getMentors, addMentor, removeMentor } from './MentorsApi';
 
 function Mentors(props) {
   const [mentorToDelete, setMentorToDelete] = useState(null);
@@ -16,7 +15,7 @@ function Mentors(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    setMentors(await getMentors(props.profile));
+    setMentors(await props.getMentors(props.profile));
     console.log(mentors);
     setIsLoading(false);
   }, []);
@@ -27,7 +26,7 @@ function Mentors(props) {
     setSelectedMentor(null);
     setMentorToDelete(null);
     setMentorToAdd(null);
-    setMentors(await getMentors(props.profile));
+    setMentors(await props.getMentors(props.profile));
   }
 
   function handleDeleteMentor(mentor) {
@@ -42,7 +41,7 @@ function Mentors(props) {
   }
 
   async function handleDeleteFromModal() {
-    const res = await removeMentor(mentorToDelete);
+    const res = await props.removeMentor(mentorToDelete);
     if (!res) {
       // Failure msg
     }
@@ -59,7 +58,7 @@ function Mentors(props) {
   }
 
   async function handleAddFromModal() {
-    const res = await addMentor(mentorToAdd, props.profile);
+    const res = await props.addMentor(mentorToAdd, props.profile);
     if (!res) {
       // Failure msg
     }
@@ -73,7 +72,7 @@ function Mentors(props) {
   return (
     <div className="content-container">
       <ListHeader
-        title="Mentors"
+        title={props.title}
         handleAdd={handleAdd}
         handleRefresh={handleExitMentor}
         routePath="/mentors"
@@ -113,7 +112,7 @@ function Mentors(props) {
 
       {showDeleteModal && (
         <ModalYesNo
-          message={`Would you like to remove ${mentorToDelete.name} as an active mentor?`}
+          message={`Would you like to remove ${mentorToDelete.name} as an active ${props.connectionType}?`}
           onNo={handleCloseModal}
           onYes={handleDeleteFromModal}
         />
@@ -121,7 +120,7 @@ function Mentors(props) {
 
       {showAddModal && (
         <ModalInput
-          message={`Please enter the Id of your mentor below:`}
+          message={`Please enter the Id of your ${props.connectionType} below:`}
           handleInput={handleInputFromModal}
           onNo={handleCloseModal}
           onYes={handleAddFromModal}

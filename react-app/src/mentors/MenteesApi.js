@@ -1,18 +1,18 @@
 import axios from 'axios';
 import API from '../config';
 
-export const readMentorsApi = async (profile) => {
-    const response = await axios.get(`${API}/connections?id=${profile.id}&isMentor=false`);
+export const readMenteesApi = async (profile) => {
+    const response = await axios.get(`${API}/connections?id=${profile.id}&isMentor=true`);
     if (response.status !== 200) {
         throw Error(response.message)
     }
     return response;
 };
 
-export const createMentorApi = async (mentor, profile) => {
+export const createMenteeApi = async (mentee, profile) => {
     const reqBody = {
-        mentorId: mentor.id,
-        menteeId: profile.id
+        mentorId: profile.id,
+        menteeId: mentee.id
     };
     const response = await axios.post(`${API}/connections`, reqBody);
     if (response.status !== 201) {
@@ -21,20 +21,20 @@ export const createMentorApi = async (mentor, profile) => {
     return response;
 };
 
-export const updateMentorApi = async (mentor, isActive) => {
+export const updateMenteeApi = async (mentee, isActive) => {
     const reqBody = {
         isActive: isActive
     };
-    const response = await axios.put(`${API}/connections/${mentor.connectionId}`, reqBody);
+    const response = await axios.put(`${API}/connections/${mentee.connectionId}`, reqBody);
     if (response.status !== 200) {
         throw Error(response.message)
     }
     return response;
 };
 
-export const getMentors = async (profile) => {
+export const getMentees = async (profile) => {
     try {
-        const resp = await readMentorsApi(profile);
+        const resp = await readMenteesApi(profile);
         console.log(resp);
         return resp.data;
     } catch (error) {
@@ -43,20 +43,20 @@ export const getMentors = async (profile) => {
     }
 };
 
-export const addMentor = async (mentor, profile) => {
+export const addMentee = async (mentee, profile) => {
     try {
-        await createMentorApi(mentor, profile);
-        return mentor;
+        await createMenteeApi(mentee, profile);
+        return mentee;
       } catch (error) {
         console.error('Could not add mentor');
         return undefined;
       }
 }
 
-export const removeMentor = async (mentor) => {
+export const removeMentee = async (mentee) => {
     try {
-        await updateMentorApi(mentor, false);
-        return mentor
+        await updateMenteeApi(mentee, false);
+        return mentee
     } catch (error) {
         console.error('Could not remove mentor');
         return undefined;

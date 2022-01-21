@@ -6,6 +6,8 @@ import { withRouter } from 'react-router';
 import { HeaderBar, NavBar, NotFound } from './components';
 import About from './About';
 import { getProfile, updateProfile } from './profile/ProfileApi';
+import { getMentors, addMentor, removeMentor } from './mentors/MentorsApi';
+import { getMentees, addMentee, removeMentee } from './mentors/MenteesApi';
 
 const Products = withRouter(lazy(() => import('./products/Products')));
 const Mentors = withRouter(lazy(() => import('./mentors/Mentors')));
@@ -28,7 +30,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ profile: await getProfile()});
+    this.setState({ profile: await getProfile() });
   }
 
   componentDidCatch(error, info) {
@@ -45,7 +47,7 @@ class App extends Component {
       this.setState({ hasError: true });
     }
     else {
-      this.setState({ profile: res});
+      this.setState({ profile: res });
     }
   }
 
@@ -69,8 +71,32 @@ class App extends Component {
                 <Route path="/products" component={Products} />
 
                 <Route path="/profile" component={() => (<Profile profile={this.state.profile} handleSaveProfile={this.handleSaveProfile} />)} />
-                <Route path="/mentors" component={() => (<Mentors profile={this.state.profile} />)} />
-                <Route path="/mentees" component={() => (<Mentees profile={this.state.profile} />)} />
+                <Route
+                  path="/mentors" 
+                  component={() => (
+                    <Mentors 
+                      profile={this.state.profile}
+                      title="Mentors"
+                      connectionType="mentor"
+                      getMentors={getMentors}
+                      addMentor={addMentor}
+                      removeMentor={removeMentor}
+                    />
+                  )}
+                />
+                <Route
+                  path="/mentees" 
+                  component={() => (
+                    <Mentors 
+                      profile={this.state.profile}
+                      title="Mentees"
+                      connectionType="mentee"
+                      getMentors={getMentees}
+                      addMentor={addMentee}
+                      removeMentor={removeMentee}
+                    />
+                  )}
+                />
                 <Route path="/requests" component={() => (<Requests profile={this.state.profile} />)} />
                 <Route path="/sessions" component={() => (<Sessions profile={this.state.profile} />)} />
 

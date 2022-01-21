@@ -6,9 +6,9 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "put"
+        "get"
       ],
-      "route": "mentors/{id}"
+      "route": "connections"
     },
     {
       "type": "http",
