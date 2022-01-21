@@ -35,7 +35,7 @@ function ProductList({
         <div>Loading data ...</div>
       )}
       {!isLoading && mentors && !mentors.length && (
-        <div>No mentors yet</div>
+        <div>No {path} yet</div>
       )}
       <ul className="list">
         {!isLoading && mentors && mentors.map((mentor, index) => (

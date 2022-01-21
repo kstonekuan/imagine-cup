@@ -21,7 +21,7 @@ function Mentors(props) {
   }, []);
 
   async function handleExitMentor() {
-    props.history.push('/mentors');
+    props.history.push(`/${props.path}`);
     handleCloseModal();
     setSelectedMentor(null);
     setMentorToDelete(null);
@@ -91,6 +91,7 @@ function Mentors(props) {
                   handleSelectMentor={handleSelectMentor}
                   handleDeleteMentor={handleDeleteMentor}
                   isLoading={isLoading}
+                  path={props.path}
                 />
               )}
             />
