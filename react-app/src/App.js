@@ -11,7 +11,6 @@ import { getMentees, addMentee, removeMentee } from './mentors/MenteesApi';
 
 const Products = withRouter(lazy(() => import('./products/Products')));
 const Mentors = withRouter(lazy(() => import('./mentors/Mentors')));
-const Mentees = withRouter(lazy(() => import('./mentees/Mentees')));
 const Profile = withRouter(lazy(() => import('./profile/Profile')));
 const Home = withRouter(lazy(() => import('./home/Home')));
 const Requests = withRouter(lazy(() => import('./requests/Requests')));
