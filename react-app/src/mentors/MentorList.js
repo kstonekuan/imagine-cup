@@ -10,11 +10,12 @@ function ProductList({
   history,
   errorMessage,
   isLoading,
+  path,
 }) {
   function selectMentor(e) {
     const mentor = getSelectedMentor(e);
     handleSelectMentor(mentor);
-    history.push(`/mentors/${mentor.id}`);
+    history.push(`/${path}/${mentor.id}`);
   }
 
   function deleteMentor(e) {
