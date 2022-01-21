@@ -77,6 +77,7 @@ class App extends Component {
                       profile={this.state.profile}
                       title="Mentors"
                       connectionType="mentor"
+                      path="mentors"
                       getMentors={getMentors}
                       addMentor={addMentor}
                       removeMentor={removeMentor}
@@ -90,6 +91,7 @@ class App extends Component {
                       profile={this.state.profile}
                       title="Mentees"
                       connectionType="mentee"
+                      path="mentees"
                       getMentors={getMentees}
                       addMentor={addMentee}
                       removeMentor={removeMentee}
