@@ -16,6 +16,10 @@ $shade-light: #fafafa;
 
 @import 'bulma/bulma.sass';
 
+.menu{
+  background-color: $light-gray;
+}
+
 .menu-list .active-link,
 .menu-list .router-link-active {
   color: #fff;
