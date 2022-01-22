@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { RiMenuLine } from 'react-icons/ri';
+import menu from '../menu.png';
 
 const NavBar = (props) => {
   // const [userInfo, setUserInfo] = useState();
@@ -41,8 +41,8 @@ const NavBar = (props) => {
     <div className={isCollapsed ? "sidebar collapsed" : "sidebar"}>
       <nav className="menu">
         
-        <div className="menu-header"> 
-          <RiMenuLine className="sidebar-icon"></RiMenuLine> 
+        <div className="menu-header" > 
+          <img src={menu} alt='logo'/>
           <p className="menu-label">Menu</p>
         </div>
 
