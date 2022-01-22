@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { RiMenuLine } from 'react-icons/ri';
 
 const NavBar = (props) => {
   // const [userInfo, setUserInfo] = useState();
@@ -24,10 +25,30 @@ const NavBar = (props) => {
   //   }
   // }
 
+  const sidebarCollapsed = localStorage.getItem('sidebar-collasped');
+  const [isExpanded, setIsExpanded] = useState(sidebarCollapsed ? false : true);
+
+  const handleToggler = () => {
+    if (isExpanded) {
+      setIsExpanded(false);
+      localStorage.setItem('sidebar-collasped', true);
+      return;
+    }
+    setIsExpanded(true);
+    localStorage.removeItem('sidebar-collasped');
+  };
+
   return (
-    <div className="column is-2">
+    //<div className="column is-2 sidebar">
+    <div className={isExpanded ? "sidebar" : "sidebar collapsed"}>
       <nav className="menu">
-        <p className="menu-label">Menu</p>
+        
+        <div className="menu-header">
+          <RiMenuLine className="sidebar-icon" onClick={handleToggler}></RiMenuLine> 
+          <p className="menu-label">Menu</p>
+        </div>
+
+
         <ul className="menu-list">
         <NavLink to="/home" activeClassName="active-link">
             Home
