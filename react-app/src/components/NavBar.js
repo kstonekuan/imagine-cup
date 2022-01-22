@@ -25,26 +25,24 @@ const NavBar = (props) => {
   //   }
   // }
 
-  const sidebarCollapsed = localStorage.getItem('sidebar-collasped');
-  const [isExpanded, setIsExpanded] = useState(sidebarCollapsed ? false : true);
+  // const sidebarCollapsed = localStorage.getItem('sidebar-collasped');
+  // const isCollapsed = useState(sidebarCollapsed ? true : false);
 
-  const handleToggler = () => {
-    if (isExpanded) {
-      setIsExpanded(false);
-      localStorage.setItem('sidebar-collasped', true);
-      return;
-    }
-    setIsExpanded(true);
-    localStorage.removeItem('sidebar-collasped');
-  };
+  // const handleToggler = () => {
+  //   if (!isCollapsed) {
+  //     localStorage.setItem('sidebar-collasped', true);
+  //     return;
+  //   }
+  //   localStorage.removeItem('sidebar-collasped');
+  // };
 
   return (
     //<div className="column is-2 sidebar">
-    <div className={isExpanded ? "sidebar" : "sidebar collapsed"}>
+    <div className={isCollapsed ? "sidebar collapsed" : "sidebar"}>
       <nav className="menu">
         
-        <div className="menu-header">
-          <RiMenuLine className="sidebar-icon" onClick={handleToggler}></RiMenuLine> 
+        <div className="menu-header"> 
+          <RiMenuLine className="sidebar-icon"></RiMenuLine> 
           <p className="menu-label">Menu</p>
         </div>
 
