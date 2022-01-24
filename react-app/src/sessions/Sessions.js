@@ -59,7 +59,7 @@ function Connections(props) {
 
   function handleSelectSession(selected) {
     setSelectedSession(selected);
-    console.log(`you selected ${selected.name}`);
+    console.log(`you selected ${selected}`);
   }
 
   function handleAdd() {
