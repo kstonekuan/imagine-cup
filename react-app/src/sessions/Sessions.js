@@ -7,16 +7,16 @@ import SessionList from './SessionList';
 import { getSessions } from './SessionsApi';
 
 function Connections(props) {
-  const [mentorToDelete, setMentorToDelete] = useState(null);
-  const [mentorToAdd, setMentorToAdd] = useState(null);
+  const [sessionToDelete, setSessionToDelete] = useState(null);
+  const [sessionToAdd, setSessionToAdd] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [mentorSessions, setMentorSessions] = useState(null);
   const [menteeSessions, setMenteeSessions] = useState(null);
-  const [selectedMentor, setSelectedMentor] = useState(null);
+  const [selectedSession, setSelectedSession] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function getSessionsInStates() {
+  async function loadSessionsToStates() {
     const allSessions = await getSessions(props.profile);
     setMentorSessions(allSessions.filter(s => s.isMentor));
     setMenteeSessions(allSessions.filter(s => !s.isMentor));
@@ -25,22 +25,22 @@ function Connections(props) {
   }
 
   useEffect(async () => {
-    await getSessionsInStates();
+    await loadSessionsToStates();
     setIsLoading(false);
   }, []);
 
-  async function handleExitMentor() {
-    props.history.push(`/${props.path}`);
+  async function handleExitSession() {
+    props.history.push(`/sessions`);
     handleCloseModal();
-    setSelectedMentor(null);
-    setMentorToDelete(null);
-    setMentorToAdd(null);
-    await getSessionsInStates();
+    setSelectedSession(null);
+    setSessionToDelete(null);
+    setSessionToAdd(null);
+    await loadSessionsToStates();
   }
 
-  function handleDeleteMentor(mentor) {
-    setSelectedMentor(null);
-    setMentorToDelete(mentor);
+  function handleDeleteSession(session) {
+    setSelectedSession(null);
+    setSessionToDelete(session);
     setShowDeleteModal(true);
   }
 
@@ -50,15 +50,15 @@ function Connections(props) {
   }
 
   async function handleDeleteFromModal() {
-    const res = await props.removeMentor(mentorToDelete);
+    const res = await props.removeSession(sessionToDelete);
     if (!res) {
       // Failure msg
     }
-    handleExitMentor();
+    handleExitSession();
   }
 
-  function handleSelectMentor(selected) {
-    setSelectedMentor(selected);
+  function handleSelectSession(selected) {
+    setSelectedSession(selected);
     console.log(`you selected ${selected.name}`);
   }
 
@@ -67,15 +67,15 @@ function Connections(props) {
   }
 
   async function handleAddFromModal() {
-    const res = await props.addMentor(mentorToAdd, props.profile);
+    const res = await props.addSession(sessionToAdd, props.profile);
     if (!res) {
       // Failure msg
     }
-    handleExitMentor();
+    handleExitSession();
   }
 
   function handleInputFromModal(e) {
-    setMentorToAdd({ id: e.target.value });
+    setSessionToAdd({ id: e.target.value });
   }
 
   return (
@@ -83,7 +83,7 @@ function Connections(props) {
       <ListHeader
         title="Sessions"
         handleAdd={handleAdd}
-        handleRefresh={handleExitMentor}
+        handleRefresh={handleExitSession}
         routePath={`/sessions`}
       />
       <div className="columns is-multiline is-variable">
@@ -100,18 +100,18 @@ function Connections(props) {
                       <SessionList
                         errorMessage={null}
                         sessions={mentorSessions}
-                        handleSelectMentor={handleSelectMentor}
-                        handleDeleteMentor={handleDeleteMentor}
+                        handleSelectSession={handleSelectSession}
+                        handleDeleteSession={handleDeleteSession}
                         isLoading={isLoading}
                       />
                     </div>
                     <div className="column is-half">
-                      <div className="name">Mentored by</div>
+                      <div className="name">To Attend</div>
                       <SessionList
                         errorMessage={null}
                         sessions={menteeSessions}
-                        handleSelectMentor={handleSelectMentor}
-                        handleDeleteMentor={handleDeleteMentor}
+                        handleSelectSession={handleSelectSession}
+                        handleDeleteSession={handleDeleteSession}
                         isLoading={isLoading}
                       />
                     </div>
@@ -125,8 +125,8 @@ function Connections(props) {
               component={() => {
                 return (
                   <SessionDetail
-                    mentor={selectedMentor}
-                    handleExitMentor={handleExitMentor}
+                    session={selectedSession}
+                    handleExitSession={handleExitSession}
                   />
                 );
               }}

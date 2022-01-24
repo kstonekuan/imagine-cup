@@ -5,7 +5,7 @@ import { ButtonFooter, InputDetail } from '../components';
 
 function SessionDetail({
   session,
-  handleExitMentor,
+  handleExitSession,
 }) {
 
   return (
@@ -49,7 +49,7 @@ function SessionDetail({
             readOnly={session.isMentor}
           />
           <InputDetail
-            name="mentor feedback"
+            name="mentee feedback"
             value={session.mentee.feedback}
             readOnly={session.isMentor}
           />
@@ -59,7 +59,7 @@ function SessionDetail({
         <ButtonFooter
           className="cancel-button"
           iconClasses="fas fa-undo"
-          onClick={handleExitMentor}
+          onClick={handleExitSession}
           label="Exit"
         />
       </footer>

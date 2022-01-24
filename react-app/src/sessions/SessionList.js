@@ -4,25 +4,25 @@ import { withRouter } from 'react-router';
 import { ButtonFooter, CardContent } from '../components';
 
 function SessionList({
-  handleDeleteMentor,
-  handleSelectMentor,
+  handleDeleteSession,
+  handleSelectSession,
   sessions,
   history,
   errorMessage,
   isLoading,
 }) {
-  function selectMentor(e) {
-    const mentor = getSelectedMentor(e);
-    handleSelectMentor(mentor);
-    history.push(`/sessions/${mentor.id}`);
+  function selectSession(e) {
+    const session = getSelectedSession(e);
+    handleSelectSession(session);
+    history.push(`/sessions/${session.id}`);
   }
 
-  function deleteMentor(e) {
-    const mentor = getSelectedMentor(e);
-    handleDeleteMentor(mentor);
+  function deleteSession(e) {
+    const session = getSelectedSession(e);
+    handleDeleteSession(session);
   }
 
-  function getSelectedMentor(e) {
+  function getSelectedSession(e) {
     const index = +e.currentTarget.dataset.index;
     return sessions[index];
   }
@@ -48,7 +48,7 @@ function SessionList({
                 <ButtonFooter
                   className="delete-item"
                   iconClasses="fas fa-trash"
-                  onClick={deleteMentor}
+                  onClick={deleteSession}
                   label="Remove"
                   dataIndex={index}
                   dataId={session.id}
@@ -56,7 +56,7 @@ function SessionList({
                 <ButtonFooter
                   className="edit-item"
                   iconClasses="fas fa-edit"
-                  onClick={selectMentor}
+                  onClick={selectSession}
                   label="View"
                   dataIndex={index}
                   dataId={session.id}

@@ -5,7 +5,7 @@ import { ButtonFooter, TextDetail } from '../components';
 
 function ConnectionDetail({
   connection,
-  handleExitMentor,
+  handleExitConnection,
 }) {
 
   return (
@@ -40,7 +40,7 @@ function ConnectionDetail({
         <ButtonFooter
           className="cancel-button"
           iconClasses="fas fa-undo"
-          onClick={handleExitMentor}
+          onClick={handleExitConnection}
           label="Exit"
         />
       </footer>

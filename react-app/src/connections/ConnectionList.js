@@ -4,26 +4,26 @@ import { withRouter } from 'react-router';
 import { ButtonFooter, CardContent } from '../components';
 
 function ConnectionList({
-  handleDeleteMentor,
-  handleSelectMentor,
+  handleDeleteConnection,
+  handleSelectConnection,
   connections,
   history,
   errorMessage,
   isLoading,
   path,
 }) {
-  function selectMentor(e) {
-    const mentor = getSelectedMentor(e);
-    handleSelectMentor(mentor);
-    history.push(`/${path}/${mentor.id}`);
+  function selectConnection(e) {
+    const connection = getSelectedConnection(e);
+    handleSelectConnection(connection);
+    history.push(`/${path}/${connection.id}`);
   }
 
-  function deleteMentor(e) {
-    const mentor = getSelectedMentor(e);
-    handleDeleteMentor(mentor);
+  function deleteConnection(e) {
+    const connection = getSelectedConnection(e);
+    handleDeleteConnection(connection);
   }
 
-  function getSelectedMentor(e) {
+  function getSelectedConnection(e) {
     const index = +e.currentTarget.dataset.index;
     return connections[index];
   }
@@ -49,7 +49,7 @@ function ConnectionList({
                 <ButtonFooter
                   className="delete-item"
                   iconClasses="fas fa-trash"
-                  onClick={deleteMentor}
+                  onClick={deleteConnection}
                   label="Remove"
                   dataIndex={index}
                   dataId={connection.id}
@@ -57,7 +57,7 @@ function ConnectionList({
                 <ButtonFooter
                   className="edit-item"
                   iconClasses="fas fa-edit"
-                  onClick={selectMentor}
+                  onClick={selectConnection}
                   label="View"
                   dataIndex={index}
                   dataId={connection.id}
