@@ -29,7 +29,7 @@ CREATE TABLE Sessions (
 	Link varchar(255),
 	Timeslot datetime,
 	LengthMinutes int, 
-	Status varchar(255),
+	CompletionStatus varchar(255),
 	MentorAgenda varchar(max),
 	MentorFeedback varchar(max),
 	MenteeAgenda varchar(max),
