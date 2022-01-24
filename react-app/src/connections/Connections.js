@@ -10,13 +10,13 @@ function Connections(props) {
   const [mentorToAdd, setMentorToAdd] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [mentors, setMentors] = useState(null);
+  const [connections, setConnections] = useState(null);
   const [selectedMentor, setSelectedMentor] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    setMentors(await props.getMentors(props.profile));
-    console.log(mentors);
+    setConnections(await props.getMentors(props.profile));
+    console.log(connections);
     setIsLoading(false);
   }, []);
 
@@ -26,7 +26,7 @@ function Connections(props) {
     setSelectedMentor(null);
     setMentorToDelete(null);
     setMentorToAdd(null);
-    setMentors(await props.getMentors(props.profile));
+    setConnections(await props.getMentors(props.profile));
   }
 
   function handleDeleteMentor(mentor) {
@@ -86,8 +86,7 @@ function Connections(props) {
               component={() => (
                 <ConnectionList
                   errorMessage={null}
-                  mentors={mentors}
-                  selectedMentor={selectedMentor}
+                  connections={connections}
                   handleSelectMentor={handleSelectMentor}
                   handleDeleteMentor={handleDeleteMentor}
                   isLoading={isLoading}
@@ -101,7 +100,7 @@ function Connections(props) {
               component={() => {
                 return (
                   <ConnectionDetail
-                    mentor={selectedMentor}
+                    connection={selectedMentor}
                     handleExitMentor={handleExitMentor}
                   />
                 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { ButtonFooter, TextDetail, InputDetail } from '../components';
+import { ButtonFooter, InputDetail } from '../components';
 
 function SessionDetail({
   session,
@@ -12,16 +12,12 @@ function SessionDetail({
     <div className="card edit-detail">
       <header className="card-header">
         <p className="card-header-title">
-          {session.name}
+          Session with {session.isMentor ? session.mentee.name : session.mentor.name}
           &nbsp;
         </p>
       </header>
       <div className="card-content">
         <div className="content">
-          <TextDetail
-            name="name"
-            value={session.isMentor ? session.mentee.name : session.mentor.name}
-          />
           <InputDetail
             name="timeslot"
             value={session.timeslot}

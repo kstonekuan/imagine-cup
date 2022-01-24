@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { ButtonFooter, TextDetail } from '../components';
 
 function ConnectionDetail({
-  mentor,
+  connection,
   handleExitMentor,
 }) {
 
@@ -12,31 +12,27 @@ function ConnectionDetail({
     <div className="card edit-detail">
       <header className="card-header">
         <p className="card-header-title">
-          {mentor.name}
+          {connection.name}&apos;s details
           &nbsp;
         </p>
       </header>
       <div className="card-content">
         <div className="content">
           <TextDetail
-            name="name"
-            value={mentor.name}
-          />
-          <TextDetail
             name="email"
-            value={mentor.email}
+            value={connection.email}
           />
           <TextDetail
             name="mobile"
-            value={mentor.mobile}
+            value={connection.mobile}
           />
           <TextDetail
             name="summary"
-            value={mentor.summary}
+            value={connection.summary}
           />
           <TextDetail
             name="Social"
-            value={mentor.social}
+            value={connection.social}
           />
         </div>
       </div>
