@@ -78,9 +78,9 @@ class App extends Component {
                       title="Mentors"
                       connectionType="mentor"
                       path="mentors"
-                      getMentors={getMentors}
-                      addMentor={addMentor}
-                      removeMentor={removeMentor}
+                      getConnections={getMentors}
+                      addConnection={addMentor}
+                      removeConnection={removeMentor}
                     />
                   )}
                 />
@@ -92,9 +92,9 @@ class App extends Component {
                       title="Mentees"
                       connectionType="mentee"
                       path="mentees"
-                      getMentors={getMentees}
-                      addMentor={addMentee}
-                      removeMentor={removeMentee}
+                      getConnections={getMentees}
+                      addConnection={addMentee}
+                      removeConnection={removeMentee}
                     />
                   )}
                 />
