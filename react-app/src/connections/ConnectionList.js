@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 
 import { ButtonFooter, CardContent } from '../components';
 
-function ProductList({
+function ConnectionList({
   handleDeleteMentor,
   handleSelectMentor,
   mentors,
@@ -71,4 +71,4 @@ function ProductList({
   );
 }
 
-export default withRouter(ProductList);
+export default withRouter(ConnectionList);

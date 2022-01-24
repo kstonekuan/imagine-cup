@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { ListHeader, ModalYesNo, ModalInput } from '../components';
-import MentorDetail from './MentorDetail';
-import MentorList from './MentorList';
+import ConnectionDetail from './ConnectionDetail';
+import ConnectionList from './ConnectionList';
 
-function Mentors(props) {
+function Connections(props) {
   const [mentorToDelete, setMentorToDelete] = useState(null);
   const [mentorToAdd, setMentorToAdd] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -84,7 +84,7 @@ function Mentors(props) {
               exact
               path={`/${props.path}`}
               component={() => (
-                <MentorList
+                <ConnectionList
                   errorMessage={null}
                   mentors={mentors}
                   selectedMentor={selectedMentor}
@@ -100,7 +100,7 @@ function Mentors(props) {
               path={`/${props.path}/:id`}
               component={() => {
                 return (
-                  <MentorDetail
+                  <ConnectionDetail
                     mentor={selectedMentor}
                     handleExitMentor={handleExitMentor}
                   />
@@ -131,4 +131,4 @@ function Mentors(props) {
   );
 }
 
-export default Mentors;
+export default Connections;

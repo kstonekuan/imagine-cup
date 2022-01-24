@@ -6,11 +6,11 @@ import { withRouter } from 'react-router';
 import { HeaderBar, NavBar, NotFound } from './components';
 import About from './About';
 import { getProfile, updateProfile } from './profile/ProfileApi';
-import { getMentors, addMentor, removeMentor } from './mentors/MentorsApi';
-import { getMentees, addMentee, removeMentee } from './mentors/MenteesApi';
+import { getMentors, addMentor, removeMentor } from './connections/MentorsApi';
+import { getMentees, addMentee, removeMentee } from './connections/MenteesApi';
 
 const Products = withRouter(lazy(() => import('./products/Products')));
-const Mentors = withRouter(lazy(() => import('./mentors/Mentors')));
+const Connections = withRouter(lazy(() => import('./connections/Connections')));
 const Profile = withRouter(lazy(() => import('./profile/Profile')));
 const Home = withRouter(lazy(() => import('./home/Home')));
 const Requests = withRouter(lazy(() => import('./requests/Requests')));
@@ -73,7 +73,7 @@ class App extends Component {
                 <Route
                   path="/mentors" 
                   component={() => (
-                    <Mentors 
+                    <Connections 
                       profile={this.state.profile}
                       title="Mentors"
                       connectionType="mentor"
@@ -87,7 +87,7 @@ class App extends Component {
                 <Route
                   path="/mentees" 
                   component={() => (
-                    <Mentors 
+                    <Connections 
                       profile={this.state.profile}
                       title="Mentees"
                       connectionType="mentee"

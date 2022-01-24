@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 
 import { ButtonFooter, TextDetail } from '../components';
 
-function MentorDetail({
+function ConnectionDetail({
   mentor,
   handleExitMentor,
 }) {
@@ -52,4 +52,4 @@ function MentorDetail({
   );
 }
 
-export default withRouter(MentorDetail);
+export default withRouter(ConnectionDetail);
