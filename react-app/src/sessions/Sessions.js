@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { ListHeader, ModalYesNo, ModalInput } from '../components';
+import { ListHeader, ModalYesNo } from '../components';
 import SessionDetail from './SessionDetail';
 import SessionList from './SessionList';
-import { getSessions } from './SessionsApi';
+import { getSessions, updateSession, addSession, removeSession } from './SessionsApi';
 
 function Connections(props) {
   const [sessionToDelete, setSessionToDelete] = useState(null);
-  const [sessionToAdd, setSessionToAdd] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
   const [mentorSessions, setMentorSessions] = useState(null);
   const [menteeSessions, setMenteeSessions] = useState(null);
   const [selectedSession, setSelectedSession] = useState(null);
@@ -34,7 +32,6 @@ function Connections(props) {
     handleCloseModal();
     setSelectedSession(null);
     setSessionToDelete(null);
-    setSessionToAdd(null);
     await loadSessionsToStates();
   }
 
@@ -46,11 +43,10 @@ function Connections(props) {
 
   function handleCloseModal() {
     setShowDeleteModal(false);
-    setShowAddModal(false);
   }
 
   async function handleDeleteFromModal() {
-    const res = await props.removeSession(sessionToDelete);
+    const res = await removeSession(sessionToDelete);
     if (!res) {
       // Failure msg
     }
@@ -63,19 +59,18 @@ function Connections(props) {
   }
 
   function handleAdd() {
-    setShowAddModal(true);
+    setSelectedSession(null);
+    history.push('/sessions/0');
   }
 
-  async function handleAddFromModal() {
-    const res = await props.addSession(sessionToAdd, props.profile);
-    if (!res) {
-      // Failure msg
+  function handleSaveSession(session) {
+    if (selectedSession) {
+      console.log(session);
+      updateSession(session);
+    } else {
+      addSession(session);
     }
     handleExitSession();
-  }
-
-  function handleInputFromModal(e) {
-    setSessionToAdd({ id: e.target.value });
   }
 
   return (
@@ -127,6 +122,8 @@ function Connections(props) {
                   <SessionDetail
                     session={selectedSession}
                     handleExitSession={handleExitSession}
+                    handleSaveSession={handleSaveSession}
+                    profile={props.profile}
                   />
                 );
               }}
@@ -140,15 +137,6 @@ function Connections(props) {
           message={`Would you like to cancel this session?`}
           onNo={handleCloseModal}
           onYes={handleDeleteFromModal}
-        />
-      )}
-
-      {showAddModal && (
-        <ModalInput
-          message={`Please enter the Id of your ${props.connectionType} below:`}
-          handleInput={handleInputFromModal}
-          onNo={handleCloseModal}
-          onYes={handleAddFromModal}
         />
       )}
     </div>

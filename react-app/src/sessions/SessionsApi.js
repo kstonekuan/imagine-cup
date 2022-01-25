@@ -9,23 +9,19 @@ export const readSessionsApi = async (profile) => {
     return response;
 };
 
-export const createMenteeApi = async (mentee, profile) => {
-    const reqBody = {
-        mentorId: profile.id,
-        menteeId: mentee.id
-    };
-    const response = await axios.post(`${API}/connections`, reqBody);
+export const createSessionApi = async (session) => {
+    const response = await axios.post(`${API}/sessions`, session);
     if (response.status !== 201) {
         throw Error(response.message)
     }
     return response;
 };
 
-export const updateMenteeApi = async (mentee, isActive) => {
+export const updateSessionApi = async (session, status) => {
     const reqBody = {
-        isActive: isActive
+        status: status
     };
-    const response = await axios.put(`${API}/connections/${mentee.connectionId}`, reqBody);
+    const response = await axios.put(`${API}/sessions/${session.id}`, reqBody);
     if (response.status !== 200) {
         throw Error(response.message)
     }
@@ -43,20 +39,30 @@ export const getSessions = async (profile) => {
     }
 };
 
-export const addMentee = async (mentee, profile) => {
+export const addSession = async (session, profile) => {
     try {
-        await createMenteeApi(mentee, profile);
-        return mentee;
+        await createSessionApi(session, profile);
+        return session;
       } catch (error) {
         console.error('Could not add mentor');
         return undefined;
       }
 }
 
-export const removeMentee = async (mentee) => {
+export const updateSession = async (session) => {
     try {
-        await updateMenteeApi(mentee, false);
-        return mentee
+        await updateSessionApi(session);
+        return session;
+      } catch (error) {
+        console.error('Could not add mentor');
+        return undefined;
+      }
+}
+
+export const removeSession = async (session) => {
+    try {
+        await updateSessionApi(session, false);
+        return session
     } catch (error) {
         console.error('Could not remove mentor');
         return undefined;

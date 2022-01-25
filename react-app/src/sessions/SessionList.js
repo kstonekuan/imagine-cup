@@ -57,7 +57,7 @@ function SessionList({
                   className="edit-item"
                   iconClasses="fas fa-edit"
                   onClick={selectSession}
-                  label="View"
+                  label="Edit"
                   dataIndex={index}
                   dataId={session.id}
                 />
