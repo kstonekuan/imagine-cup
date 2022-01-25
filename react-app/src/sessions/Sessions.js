@@ -60,7 +60,7 @@ function Connections(props) {
 
   function handleAdd() {
     setSelectedSession(null);
-    history.push('/sessions/0');
+    props.history.push('/sessions/0');
   }
 
   function handleSaveSession(session) {
