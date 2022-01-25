@@ -9,10 +9,12 @@ function SessionDetail({
   handleExitSession,
   handleSaveSession,
   profile,
+  errorMessage,
   history
 }) {
   const [session, setSession] = useState(Object.assign({}, initSession));
   const [mentees, setMentees] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!session) {
@@ -23,6 +25,7 @@ function SessionDetail({
   useEffect(async () => {
     setMentees(await getMentees(profile));
     console.log(mentees);
+    setIsLoading(false);
   }, [])
 
   function handleSave() {
@@ -72,7 +75,10 @@ function SessionDetail({
       </header>
       <div className="card-content">
         <div className="content">
-          {session.id && (
+          {!session.id && (!mentees || isLoading) && !errorMessage && (
+            <div>Loading data ...</div>
+          )}
+          {!session.id && mentees (
             <select id="selectMentee" onBlur={handleConnectionIdChange}>
               <option value="">Select mentee</option>
               {mentees.map((mentee, i) => <option value={mentee.connectionId} key={i} >{mentee.name}</option>)}
