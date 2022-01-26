@@ -8,7 +8,7 @@ module.exports = async function (context, req) {
 
         const res = await pool.query(`
             update Sessions
-            set Link = '${req.body.link}', TimeSlot = '${req.body.timeslot}', 
+            set Link = '${req.body.link}', Timeslot = '${req.body.timeslot}', 
                 LenghtMinutes = '${req.body.lengthMinutes}', CompletionStatus = '${req.body.status}',
                 MentorAgenda = '${req.body.mentor.agenda}', MentorFeedback = '${req.body.mentor.feedback}',
                 MenteeAgenda = '${req.body.mentee.agenda}', MenteeFeedback = '${req.body.mentee.feedback}'

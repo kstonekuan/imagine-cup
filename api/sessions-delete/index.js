@@ -7,7 +7,7 @@ module.exports = async function (context, req) {
         const pool = await sql.connect(AZURE_CONN_STRING);
 
         const res = await pool.query(`
-            delet from Sessions
+            delete from Sessions
             where SessionId = ${parseInt(req.params.id, 10)};
         `);
 
