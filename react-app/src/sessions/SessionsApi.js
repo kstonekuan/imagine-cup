@@ -10,6 +10,8 @@ export const readSessionsApi = async (profile) => {
 };
 
 export const createSessionApi = async (session) => {
+    session.timeslot = session.timeslot.toISOString().slice(0, 19).replace('T', ' ')
+
     const response = await axios.post(`${API}/sessions`, session);
     if (response.status !== 201) {
         throw Error(response.message)

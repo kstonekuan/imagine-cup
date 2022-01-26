@@ -29,7 +29,7 @@ module.exports = async function (context, req) {
                 connectionId: data["ConnectionId"],
                 status: data["CompletionStatus"],
                 link: data["Link"],
-                timeslot: new Date(data["TimeSlot"]),
+                timeslot: data["TimeSlot"],
                 lengthMinutes: data["LengthMinutes"],
                 mentor: {
                     agenda: data["MentorAgenda"],

@@ -10,7 +10,7 @@ module.exports = async function (context, req) {
             insert into Sessions (ConnectionId, Link, Timeslot, LengthMinutes, CompletionStatus, 
                 MentorAgenda)
             values (${req.body.connectionId}, '${req.body.link}', 
-                '${new Date(req.body.timeslot).toISOString().slice(0, 19).replace('T', ' ')}', ${req.body.lengthMinutes}, 
+                '${req.body.timeslot}', ${req.body.lengthMinutes}, 
                 'Incomplete', '${req.body.mentor.agenda}');
         `);
 
