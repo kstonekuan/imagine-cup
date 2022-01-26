@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
 import { ButtonFooter, InputDetail } from '../components';
+import SelectDetail from '../components/SelectDetail';
 import { getMentees } from '../connections/MenteesApi'
 
 function SessionDetail({
@@ -81,10 +82,13 @@ function SessionDetail({
             <div>Loading data ...</div>
           )}
           {!session.id && mentees && !isLoading && (
-            <select id="selectMentee" onBlur={handleConnectionIdChange}>
-              <option value="">Select mentee</option>
-              {mentees.map((mentee, index) => <option value={index} key={index}>{mentee.name}</option>)}
-            </select>
+            <SelectDetail
+              name="mentee"
+              placeholder="select mentee"
+              options={mentees}
+              propertyName="name"
+              onChange={handleConnectionIdChange}
+            />
           )}
           <InputDetail
             name="timeslot"
