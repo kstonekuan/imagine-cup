@@ -31,7 +31,7 @@ const NavBar = (props) => {
   const handleToggler = () => {
     if (!isCollapsed) {
       localStorage.setItem('sidebar-collasped', true);
-      console.log("closed");
+      console.log('closed');
       return;
     }
     localStorage.removeItem('sidebar-collasped');
