@@ -15,7 +15,7 @@ module.exports = async function (context, req) {
             on c.MenteeId = p1.ProfileId
             inner join (select ProfileId, Name as MentorName from Profiles) as p2
             on c.MentorId = p2.ProfileId
-            where c.MentorId = 3 or c.MentorId = 3;
+            where c.MentorId = ${req.query.id} or c.MenteeId = ${req.query.id};
         `);
 
         context.log(res);
