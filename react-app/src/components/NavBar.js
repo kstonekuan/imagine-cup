@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import menu from '../menu.png';
+// import menu from '../menu.png';
+
+import { RiMenuLine } from 'react-icons/ri';
 
 const NavBar = (props) => {
   // const [userInfo, setUserInfo] = useState();
@@ -38,11 +40,11 @@ const NavBar = (props) => {
 
   return (
     //<div className="column is-2 sidebar">
-    <div className={isCollapsed ? "sidebar collapsed" : "sidebar"}>
+    <div className={isCollapsed ? 'sidebar collapsed' : 'sidebar'}>
       <nav className="menu">
         
         <div className="menu-header" > 
-          <img src={menu} alt='menu' onClick={handleToggler}/>
+          <RiMenuLine className="sidebar-icon" onClick={handleToggler}></RiMenuLine> 
           <p className="menu-label">Menu</p>
         </div>
 
