@@ -30,7 +30,7 @@ export const updateSessionApi = async (session) => {
 };
 
 export const deleteSessionApi = async (session) => {
-    const response = await axios.put(`${API}/sessions/${session.id}`);
+    const response = await axios.delete(`${API}/sessions/${session.id}`);
     if (response.status !== 200) {
         throw Error(response.message)
     }
@@ -66,7 +66,7 @@ export const updateSession = async (session) => {
         return session;
       } catch (error) {
         console.error(error);
-        console.error('Could not add mentor');
+        console.error('Could not update session');
         return undefined;
       }
 }
@@ -77,7 +77,7 @@ export const removeSession = async (session) => {
         return session
     } catch (error) {
         console.error(error);
-        console.error('Could not remove mentor');
+        console.error('Could not remove session');
         return undefined;
     }
 }

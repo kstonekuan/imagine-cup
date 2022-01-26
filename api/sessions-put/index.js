@@ -9,7 +9,7 @@ module.exports = async function (context, req) {
         const res = await pool.query(`
             update Sessions
             set Link = '${req.body.link}', Timeslot = '${req.body.timeslot}', 
-                LenghtMinutes = '${req.body.lengthMinutes}', CompletionStatus = '${req.body.status}',
+                LengthMinutes = '${req.body.lengthMinutes}', CompletionStatus = '${req.body.status}',
                 MentorAgenda = '${req.body.mentor.agenda}', MentorFeedback = '${req.body.mentor.feedback}',
                 MenteeAgenda = '${req.body.mentee.agenda}', MenteeFeedback = '${req.body.mentee.feedback}'
             where SessionId = ${parseInt(req.params.id, 10)};
@@ -19,6 +19,7 @@ module.exports = async function (context, req) {
 
         context.res.status(200);
     }  catch (error) {
+        context.log(error)
         context.res.status(500).send(error);
     }
 }

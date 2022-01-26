@@ -16,6 +16,7 @@ module.exports = async function (context, req) {
 
         context.res.status(201);
     }  catch (error) {
+        context.log(error)
         context.res.status(500).send(error);
     }
 }
