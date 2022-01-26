@@ -41,7 +41,7 @@ const NavBar = (props) => {
     <div className={isCollapsed ? 'sidebar collapsed' : 'sidebar'}>
       <nav className="menu">
         
-        <div className="menu-header" onClick={handleToggler}> 
+        <div className="menu-header" role="button" onClick={handleToggler}> 
           <img src={menu} alt='menu'/>
           <p className="menu-label">Menu</p>
         </div>
