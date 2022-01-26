@@ -44,6 +44,7 @@ export const getProfile = async () => {
 
       return profile;
     } catch (error) {
+      console.error(error);
       console.error('No profile could be found');
       return undefined;
     }
@@ -54,6 +55,7 @@ export const updateProfile = async (profile) => {
       await updateProfileApi(profile)
       return profile;
     } catch (error) {
+      console.error(error);
       console.error('Could not update profile');
       return undefined;
     }

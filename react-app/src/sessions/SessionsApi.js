@@ -34,6 +34,7 @@ export const getSessions = async (profile) => {
         console.log(resp);
         return resp.data;
     } catch (error) {
+        console.error(error);
         console.error('Sessions could not be found');
         return undefined;
     }
@@ -44,7 +45,8 @@ export const addSession = async (session, profile) => {
         await createSessionApi(session, profile);
         return session;
       } catch (error) {
-        console.error('Could not add mentor');
+        console.error(error);
+        console.error('Could not add session');
         return undefined;
       }
 }
@@ -54,6 +56,7 @@ export const updateSession = async (session) => {
         await updateSessionApi(session);
         return session;
       } catch (error) {
+        console.error(error);
         console.error('Could not add mentor');
         return undefined;
       }
@@ -64,6 +67,7 @@ export const removeSession = async (session) => {
         await updateSessionApi(session, false);
         return session
     } catch (error) {
+        console.error(error);
         console.error('Could not remove mentor');
         return undefined;
     }
