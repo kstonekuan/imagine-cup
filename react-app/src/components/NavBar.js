@@ -41,7 +41,7 @@ const NavBar = (props) => {
     <div className={isCollapsed ? 'sidebar collapsed' : 'sidebar'}>
       <nav className="menu">
         
-        <div className="menu-header" role="button" onClick={handleToggler}> 
+        <div className="menu-header" role="button" onClick={handleToggler} tabIndex="0" onKeyPress={() => {}}> 
           <img src={menu} alt='menu'/>
           <p className="menu-label">Menu</p>
         </div>
