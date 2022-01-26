@@ -1,5 +1,4 @@
 const sql = require('mssql')
-const providers = require('../shared/providers');
 
 const AZURE_CONN_STRING = process.env["AzureSQLConnectionString"];
 
@@ -11,7 +10,7 @@ module.exports = async function (context, req) {
             insert into Sessions (ConnectionId, Link, Timeslot, LengthMinutes, CompletionStatus, 
                 MentorAgenda)
             values (${req.body.connectionId}, '${req.body.link}', 
-                '${req.body.timeslot.toISOString().slice(0, 19).replace('T', ' ')}', ${req.body.lengthMinutes}, 
+                '${new Date(req.body.timeslot).toISOString().slice(0, 19).replace('T', ' ')}', ${req.body.lengthMinutes}, 
                 'Incomplete', '${req.body.mentor.agenda}');
         `);
 
@@ -19,6 +18,7 @@ module.exports = async function (context, req) {
 
         context.res.status(201);
     }  catch (error) {
+        context.log(error)
         context.res.status(500).send(error);
     }
 }

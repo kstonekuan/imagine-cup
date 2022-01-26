@@ -59,7 +59,7 @@ function Connections(props) {
   }
 
   function handleAdd() {
-    setSelectedSession({ isMentor: true });
+    setSelectedSession({ isMentor: true, mentor: props.profile, lengthMinutes: 30 });
     props.history.push('/sessions/0');
   }
 
