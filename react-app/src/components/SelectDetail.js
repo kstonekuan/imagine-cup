@@ -5,7 +5,7 @@ const SelectDetail = ({ name, options, placeholder, onChange, propertyName }) =>
     <label className="label" htmlFor={name}>
       {name}
     </label>
-    <select name={name} onBlur={onChange}>
+    <select name={name} onBlur={onChange} required>
         <option value="">{placeholder}</option>
         {options.map((option, index) => <option value={index} key={index}>{option[`${propertyName}`]}</option>)}
     </select>
