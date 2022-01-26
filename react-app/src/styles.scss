@@ -26,15 +26,15 @@ $shade-light: #fafafa;
   height: 1.25em;
 }
 //collasped sidebar
-.sidebar .collapsed{
+.collapsed{
   width: 52px;
 }
 
-.sidebar .collapsed .sidebar-icon{
+.collapsed .sidebar-icon{
   margin-right: 0;
 }
 
-.sidebar.collapsed.menu-list{
+.collapsed.menu-list{
   display: none;
 }
 //end collapsed sidebar

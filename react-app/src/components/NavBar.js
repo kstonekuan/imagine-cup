@@ -31,6 +31,7 @@ const NavBar = (props) => {
   const handleToggler = () => {
     if (!isCollapsed) {
       localStorage.setItem('sidebar-collasped', true);
+      console.log("closed");
       return;
     }
     localStorage.removeItem('sidebar-collasped');
@@ -38,7 +39,7 @@ const NavBar = (props) => {
 
   return (
     //<div className="column is-2 sidebar">
-    <div className={isCollapsed ? 'sidebar collapsed' : 'sidebar'}>
+    <div className={isCollapsed ? 'collapsed' : 'sidebar'}>
       <nav className="menu">
         
         <div className="menu-header" role="button" onClick={handleToggler} tabIndex="0" onKeyPress={() => {}}> 
