@@ -33,9 +33,9 @@ function SessionDetail({
     handleSaveSession(chgSession);
   }
 
-  function handleTimeslotChange(e) {
-    console.log(e.target.value)
-    setSession({ ...session, timeslot: e.target.value });
+  function handleTimeslotChange(value) {
+    console.log(value)
+    setSession({ ...session, timeslot: value });
   }
 
   function handleLengthChange(e) {
