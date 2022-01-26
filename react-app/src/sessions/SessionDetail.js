@@ -39,7 +39,7 @@ function SessionDetail({
   }
 
   function handleLengthChange(e) {
-    setSession({ ...session, lengthMinutes: e.target.value });
+    setSession({ ...session, lengthMinutes: parseInt(e.target.value, 10) });
   }
 
   function handleLinkChange(e) {
