@@ -69,7 +69,8 @@ function SessionDetail({
     <div className="card edit-detail">
       <header className="card-header">
         <p className="card-header-title">
-          Session with {session.id && session.isMentor ? session.mentee.name : session.mentor.name}
+          {session.id && `Session with ${session.isMentor ? session.mentee.name : session.mentor.name}`}
+          {!session.id && 'Create new session'}
           &nbsp;
         </p>
       </header>
