@@ -64,7 +64,7 @@ function Connections(props) {
   }
 
   function handleSaveSession(session) {
-    if (selectedSession) {
+    if (selectedSession.id) {
       console.log(session);
       updateSession(session);
     } else {
