@@ -97,8 +97,8 @@ function SessionDetail({
             onChange={handleTimeslotChange}
           />
           <InputDetail
-            name="length"
-            value={`${session.lengthMinutes} min`}
+            name="length (minutes)"
+            value={session.lengthMinutes}
             readOnly={!session.isMentor}
             onChange={handleLengthChange}
           />
