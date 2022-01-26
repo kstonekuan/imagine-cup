@@ -79,7 +79,7 @@ function SessionDetail({
           {!session.id && (!mentees || isLoading) && !errorMessage && (
             <div>Loading data ...</div>
           )}
-          {!session.id && mentees (
+          {!session.id && (mentees || !isLoading) (
             <select id="selectMentee" onBlur={handleConnectionIdChange}>
               <option value="">Select mentee</option>
               {mentees.map((mentee, i) => <option value={mentee.connectionId} key={i} >{mentee.name}</option>)}
