@@ -42,7 +42,7 @@ const NavBar = (props) => {
       <nav className="menu">
         
         <div className="menu-header" role="button" onClick={handleToggler} tabIndex="0" onKeyPress={() => {}}> 
-          <img src={menu} alt='menu'/>
+          <img src={menu} alt='menu'className="sidebar-icon"/>
           <p className="menu-label">Menu</p>
         </div>
 
