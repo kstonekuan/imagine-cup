@@ -9,10 +9,10 @@ module.exports = async function (context, req) {
 
         const res = await pool.query(`
             insert into Sessions (ConnectionId, Link, Timeslot, LengthMinutes, CompletionStatus, 
-                MentorAgenda, MenteeAgenda)
+                MentorAgenda)
             values (${req.body.connectionId}, '${req.body.link}', 
                 '${req.body.timeslot.toISOString().slice(0, 19).replace('T', ' ')}', ${req.body.lengthMinutes}, 
-                '${req.body.status}', '${req.body.mentor.agenda}', '${req.body.mentee.agenda}');
+                'Incomplete', '${req.body.mentor.agenda}');
         `);
 
         context.log(res);
