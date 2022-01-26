@@ -45,7 +45,7 @@ function Connections(props) {
     if (!res) {
       // Failure msg
     }
-    handleExitConnection();
+    await handleExitConnection();
   }
 
   function handleSelectConnection(selected) {
@@ -62,7 +62,7 @@ function Connections(props) {
     if (!res) {
       // Failure msg
     }
-    handleExitConnection();
+    await handleExitConnection();
   }
 
   function handleInputFromModal(e) {

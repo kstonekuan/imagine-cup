@@ -50,7 +50,7 @@ function Connections(props) {
     if (!res) {
       // Failure msg
     }
-    handleExitSession();
+    await handleExitSession();
   }
 
   function handleSelectSession(selected) {
@@ -63,14 +63,14 @@ function Connections(props) {
     props.history.push('/sessions/0');
   }
 
-  function handleSaveSession(session) {
+  async function handleSaveSession(session) {
     if (selectedSession.id) {
       console.log(session);
-      updateSession(session);
+      await updateSession(session);
     } else {
-      addSession(session);
+      await addSession(session);
     }
-    handleExitSession();
+    await handleExitSession();
   }
 
   return (

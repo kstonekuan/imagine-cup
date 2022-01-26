@@ -19,11 +19,18 @@ export const createSessionApi = async (session) => {
     return response;
 };
 
-export const updateSessionApi = async (session, status) => {
-    const reqBody = {
-        status: status
-    };
-    const response = await axios.put(`${API}/sessions/${session.id}`, reqBody);
+export const updateSessionApi = async (session) => {
+    session.timeslot = session.timeslot.toISOString().slice(0, 19).replace('T', ' ')
+
+    const response = await axios.put(`${API}/sessions/${session.id}`, session);
+    if (response.status !== 200) {
+        throw Error(response.message)
+    }
+    return response;
+};
+
+export const deleteSessionApi = async (session) => {
+    const response = await axios.put(`${API}/sessions/${session.id}`);
     if (response.status !== 200) {
         throw Error(response.message)
     }
@@ -66,7 +73,7 @@ export const updateSession = async (session) => {
 
 export const removeSession = async (session) => {
     try {
-        await updateSessionApi(session, false);
+        await deleteSessionApi(session);
         return session
     } catch (error) {
         console.error(error);
