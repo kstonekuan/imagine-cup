@@ -62,7 +62,8 @@ function SessionDetail({
   }
 
   function handleConnectionIdChange(e) {
-    setSession({ ...session, connectionId: e.target.value });
+    const index = e.target.value
+    setSession({ ...session, connectionId: mentees[index].connectionId, mentee: mentees[index] });
   }
 
   return (
@@ -82,7 +83,7 @@ function SessionDetail({
           {!session.id && mentees && !isLoading && (
             <select id="selectMentee" onBlur={handleConnectionIdChange}>
               <option value="">Select mentee</option>
-              {mentees.map((mentee, i) => <option value={mentee.connectionId} key={i} >{mentee.name}</option>)}
+              {mentees.map((mentee, index) => <option value={index} key={index}>{mentee.name}</option>)}
             </select>
           )}
           <InputDetail
@@ -105,25 +106,25 @@ function SessionDetail({
           />
           <InputDetail
             name="mentor agenda"
-            value={session.mentor.agenda}
+            value={session.mentor && session.mentor.agenda}
             readOnly={!session.isMentor}
             onChange={handleMentorAgendaChange}
           />
           <InputDetail
             name="mentor feedback"
-            value={session.mentor.feedback}
+            value={session.mentor && session.mentor.feedback}
             readOnly={!session.isMentor}
             onChange={handleMentorFeedbackChange}
           />
           <InputDetail
             name="mentee agenda"
-            value={session.mentee.agenda}
+            value={session.mentee && session.mentee.agenda}
             readOnly={session.isMentor}
             onChange={handleMenteeAgendaChange}
           />
           <InputDetail
             name="mentee feedback"
-            value={session.mentee.feedback}
+            value={session.mentee && session.mentee.feedback}
             readOnly={session.isMentor}
             onChange={handleMenteeFeedbackChange}
           />
