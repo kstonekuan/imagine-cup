@@ -102,6 +102,7 @@ function Connections(props) {
                   <ConnectionDetail
                     connection={selectedConnection}
                     handleExitConnection={handleExitConnection}
+                    path={props.path}
                   />
                 );
               }}

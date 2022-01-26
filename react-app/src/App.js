@@ -23,6 +23,7 @@ class App extends Component {
 
     this.state = {
       profile: undefined,
+      isLoading: true,
       hasError: false
     }
 
@@ -30,7 +31,9 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ profile: await getProfile() });
+    const profile = await getProfile();
+    if (profile) this.setState({ profile: profile });
+    this.setState({ isLoading: false });
   }
 
   componentDidCatch(error, info) {
@@ -61,7 +64,7 @@ class App extends Component {
       <div>
         <HeaderBar />
         <div className="section columns">
-          <NavBar profile={this.state.profile} />
+          <NavBar profile={this.state.profile} isLoading={this.state.isLoading} />
           <main className="column">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>

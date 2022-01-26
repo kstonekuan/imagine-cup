@@ -16,7 +16,7 @@ module.exports = async function (context, req) {
             srcCol = "MenteeId";
             dstCol = "MentorId";
         } else {
-            context.res.status(400).send("Inavlid value in 'isMentor' query param.");
+            context.res.status(400).send("Invalid value in 'isMentor' query param.");
             return;
         };
 
@@ -41,7 +41,8 @@ module.exports = async function (context, req) {
                 mobile: data["Mobile"],
                 social: data["Social"],
                 summary: data["Summary"],
-                connectionId: data["ConnectionId"]
+                connectionId: data["ConnectionId"],
+                notes: req.query.isMentor === 'true' ? data["Notes"] : ""
             });
         });
 

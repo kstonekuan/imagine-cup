@@ -1,11 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { ButtonFooter, TextDetail } from '../components';
+import { ButtonFooter, InputDetail, TextDetail } from '../components';
 
 function ConnectionDetail({
   connection,
   handleExitConnection,
+  path
 }) {
 
   return (
@@ -34,6 +35,12 @@ function ConnectionDetail({
             name="Social"
             value={connection.social}
           />
+          {path == 'mentees' && (
+            <InputDetail
+              name="Notes (only visible to you)"
+              placeholder="TBC"
+            />
+          )}
         </div>
       </div>
       <footer className="card-footer ">

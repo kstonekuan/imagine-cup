@@ -20,7 +20,8 @@ CREATE TABLE Connections (
     ConnectionId int IDENTITY(1,1) PRIMARY KEY,
     MentorId int FOREIGN KEY REFERENCES Profiles(ProfileId),
     MenteeId int FOREIGN KEY REFERENCES Profiles(ProfileId),
-    IsActive bit
+    IsActive bit,
+	Notes varchar(max)
 );
 
 CREATE TABLE Sessions (
