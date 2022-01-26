@@ -8,6 +8,8 @@ import ModalInput from './ModalInput';
 import NavBar from './NavBar';
 import NotFound from './NotFound';
 import TextDetail from './TextDetail';
+import SelectDetail from './SelectDetail';
+import DateTimeDetail from './DateTimeDetail';
 
 export {
   ButtonFooter,
@@ -19,5 +21,7 @@ export {
   NotFound,
   ModalYesNo,
   ModalInput,
-  TextDetail
+  TextDetail,
+  SelectDetail,
+  DateTimeDetail
 };

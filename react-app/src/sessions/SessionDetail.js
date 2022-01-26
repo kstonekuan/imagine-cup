@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
-import { ButtonFooter, InputDetail } from '../components';
-import SelectDetail from '../components/SelectDetail';
+import { ButtonFooter, InputDetail, SelectDetail, DateTimeDetail } from '../components';
 import { getMentees } from '../connections/MenteesApi'
 
 function SessionDetail({
@@ -35,6 +34,7 @@ function SessionDetail({
   }
 
   function handleTimeslotChange(e) {
+    console.log(e.target.value)
     setSession({ ...session, timeslot: e.target.value });
   }
 
@@ -90,7 +90,7 @@ function SessionDetail({
               onChange={handleConnectionIdChange}
             />
           )}
-          <InputDetail
+          <DateTimeDetail
             name="timeslot"
             value={session.timeslot}
             readOnly={!session.isMentor}
