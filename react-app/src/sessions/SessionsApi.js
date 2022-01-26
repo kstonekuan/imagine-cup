@@ -11,6 +11,7 @@ export const readSessionsApi = async (profile) => {
 
 export const createSessionApi = async (session) => {
     session.timeslot = session.timeslot.toISOString().slice(0, 19).replace('T', ' ')
+    if (!session.lengthMinutes) session.lengthMinutes = 30;
 
     const response = await axios.post(`${API}/sessions`, session);
     if (response.status !== 201) {
@@ -21,6 +22,7 @@ export const createSessionApi = async (session) => {
 
 export const updateSessionApi = async (session) => {
     session.timeslot = session.timeslot.toISOString().slice(0, 19).replace('T', ' ')
+    if (!session.lengthMinutes) session.lengthMinutes = 30;
 
     const response = await axios.put(`${API}/sessions/${session.id}`, session);
     if (response.status !== 200) {

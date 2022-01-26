@@ -99,6 +99,7 @@ function SessionDetail({
           <InputDetail
             name="length (minutes)"
             value={session.lengthMinutes}
+            placeholder="15 by default"
             readOnly={!session.isMentor}
             onChange={handleLengthChange}
           />
