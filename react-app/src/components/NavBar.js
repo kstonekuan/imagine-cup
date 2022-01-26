@@ -25,16 +25,16 @@ const NavBar = (props) => {
   //   }
   // }
 
-  // const sidebarCollapsed = localStorage.getItem('sidebar-collasped');
-  // const isCollapsed = useState(sidebarCollapsed ? true : false);
+  const sidebarCollapsed = localStorage.getItem('sidebar-collasped');
+  const isCollapsed = useState(sidebarCollapsed ? true : false);
 
-  // const handleToggler = () => {
-  //   if (!isCollapsed) {
-  //     localStorage.setItem('sidebar-collasped', true);
-  //     return;
-  //   }
-  //   localStorage.removeItem('sidebar-collasped');
-  // };
+  const handleToggler = () => {
+    if (!isCollapsed) {
+      localStorage.setItem('sidebar-collasped', true);
+      return;
+    }
+    localStorage.removeItem('sidebar-collasped');
+  };
 
   return (
     //<div className="column is-2 sidebar">
@@ -42,7 +42,7 @@ const NavBar = (props) => {
       <nav className="menu">
         
         <div className="menu-header" > 
-          <img src={menu} alt='logo'/>
+          <img src={menu} alt='menu' onClick={handleToggler}/>
           <p className="menu-label">Menu</p>
         </div>
 

@@ -16,31 +16,29 @@ $shade-light: #fafafa;
 
 @import 'bulma/bulma.sass';
 
-// .sidebar{
-//   height: 100%;
-//   background-color: #ccc;
-// }
+.sidebar{
+  height: 100%;
+  background-color: #ccc;
+}
 
 // .sidebar-icon {
 //   width: 1.25em;
 //   height: 1.25em;
 // }
-// //collasped sidebar
-// .sidebar .collapsed{
-//   width: 52px;
-// }
+//collasped sidebar
+.sidebar .collapsed{
+  width: 52px;
+}
 
 // .sidebar .collapsed .sidebar-icon{
 //   margin-right: 0;
 // }
 
-// .sidebar.collapsed.menu-list{
-//   display: none;
-// }
-//end collapsed sidebar
-.sidebar {
-  background-color: #ccc;
+.sidebar.collapsed.menu-list{
+  display: none;
 }
+//end collapsed sidebar
+
 .menu-list .active-link,
 .menu-list .router-link-active {
   color: #fff;
