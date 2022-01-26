@@ -92,7 +92,7 @@ function SessionDetail({
           )}
           <DateTimeDetail
             name="timeslot"
-            value={new Date(session.timeslot)}
+            value={session.timeslot ? new Date(session.timeslot) : new Date()}
             readOnly={!session.isMentor}
             onChange={handleTimeslotChange}
           />
