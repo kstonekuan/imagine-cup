@@ -15,6 +15,7 @@ const Profile = withRouter(lazy(() => import('./profile/Profile')));
 const Home = withRouter(lazy(() => import('./home/Home')));
 const Requests = withRouter(lazy(() => import('./requests/Requests')));
 const Sessions = withRouter(lazy(() => import('./sessions/Sessions')));
+const Questions = withRouter(lazy(() => import('./questions/Questions')));
 
 class App extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class App extends Component {
                 />
                 <Route path="/requests" component={() => (<Requests profile={this.state.profile} />)} />
                 <Route path="/sessions" component={() => (<Sessions profile={this.state.profile} />)} />
+                <Route path="/questions" component={() => (<Questions profile={this.state.profile} />)} />
 
                 <Route exact path="**" component={NotFound} />
               </Switch>

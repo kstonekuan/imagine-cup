@@ -53,11 +53,14 @@ const NavBar = (props) => {
           <NavLink to="/requests" activeClassName="active-link">
             Requests
           </NavLink>
+          <NavLink to="/questions" activeClassName="active-link">
+            Questions
+          </NavLink>
         </ul>
         {props.children}
       </nav>
       <nav className="menu auth">
-        <p className="menu-label">Auth</p>
+        <p className="menu-label">Login</p>
         <div className="menu-list auth">
           {!props.profile &&
             providers.map((provider) => (
