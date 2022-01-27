@@ -120,6 +120,9 @@ header {
       color: $link;
     }
   }
+  ul {
+    list-style-type: space-counter;
+  }
 }
 ul.list {
   box-shadow: none;
