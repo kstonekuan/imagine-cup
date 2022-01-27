@@ -3,18 +3,25 @@ import React from 'react';
 const About = () => (
   <div className="content-container">
     <div className="content-title-group not-found">
-      <h2 className="title">Imagine Cup Submission</h2>
+      <h2 className="title">About Menty</h2>
       <p>
-        This project was created to help represent a fundamental app written
-        with React. The shopping theme is used throughout the app.
+        Menty is the tool for the amateur mentor.
       </p>
-      <br />
-      <h2 className="title">Resources</h2>
       <ul>
         <li>
-          <a href="https://github.com/MicrosoftDocs/mslearn-staticwebapp">
-            Code in GitHub
-          </a>
+          Organize mentoring sessions efficiently
+        </li>
+        <li>
+          Resources to help users structure discussions
+        </li>
+        <li>
+          QnA at anytime
+        </li>
+        <li>
+          Earn from subscriptions by getting certified or through income-share agreements
+        </li>
+        <li>
+          Keep in contact with past mentors and mentees
         </li>
       </ul>
     </div>

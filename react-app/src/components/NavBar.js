@@ -35,9 +35,6 @@ const NavBar = (props) => {
           <NavLink to="/about" activeClassName="active-link">
             About
           </NavLink>
-          <NavLink to="/products" activeClassName="active-link">
-            Products
-          </NavLink>
           <NavLink to="/profile" activeClassName="active-link">
             Profile
           </NavLink>
@@ -51,10 +48,10 @@ const NavBar = (props) => {
             Sessions
           </NavLink>
           <NavLink to="/requests" activeClassName="active-link">
-            Requests
+            Requests (TODO)
           </NavLink>
           <NavLink to="/questions" activeClassName="active-link">
-            Questions
+            Questions (TODO)
           </NavLink>
         </ul>
         {props.children}
