@@ -29,6 +29,9 @@ export const getProfile = async () => {
     try {
       const authResponse = await fetch('/.auth/me');
       const payload = await authResponse.json();
+
+      if (!payload.clientPrincipal) return undefined;
+
       let profile = {
         provider: payload.clientPrincipal.identityProvider,
         providerId: payload.clientPrincipal.userId 
