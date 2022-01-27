@@ -34,6 +34,8 @@ export const updateMenteeApi = async (mentee, isActive) => {
 
 export const getMentees = async (profile) => {
     try {
+        if (!profile) return undefined;
+
         const resp = await readMenteesApi(profile);
         console.log(resp);
         return resp.data;

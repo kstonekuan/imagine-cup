@@ -41,6 +41,8 @@ export const deleteSessionApi = async (session) => {
 
 export const getSessions = async (profile) => {
     try {
+        if (!profile) return undefined;
+
         const resp = await readSessionsApi(profile);
         console.log(resp);
         return resp.data;

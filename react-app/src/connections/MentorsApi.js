@@ -34,6 +34,8 @@ export const updateMentorApi = async (mentor, isActive) => {
 
 export const getMentors = async (profile) => {
     try {
+        if (!profile) return undefined;
+
         const resp = await readMentorsApi(profile);
         console.log(resp);
         return resp.data;

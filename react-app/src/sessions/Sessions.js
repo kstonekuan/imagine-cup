@@ -16,10 +16,13 @@ function Connections(props) {
 
   async function loadSessionsToStates() {
     const allSessions = await getSessions(props.profile);
-    setMentorSessions(allSessions.filter(s => s.isMentor));
-    setMenteeSessions(allSessions.filter(s => !s.isMentor));
-    console.log(mentorSessions);
-    console.log(menteeSessions);
+    if (allSessions) {
+      setMentorSessions(allSessions.filter(s => s.isMentor));
+      setMenteeSessions(allSessions.filter(s => !s.isMentor));
+      console.log(mentorSessions);
+      console.log(menteeSessions);
+    }
+    
   }
 
   useEffect(async () => {
