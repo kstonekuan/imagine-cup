@@ -10,14 +10,19 @@ function Profile(props) {
         title="Profile"
         routePath="/profile"
       />
-      <div className="columns is-multiline is-variable">
-        <div className="column is-8">
-          <ProfileDetail
-              profile={props.profile}
-              handleSaveProfile={props.handleSaveProfile}
-            />
+      {!props.profile && (
+        <div>Please login first.</div>
+      )}
+      {props.profile && (
+        <div className="columns is-multiline is-variable">
+          <div className="column is-8">
+            <ProfileDetail
+                profile={props.profile}
+                handleSaveProfile={props.handleSaveProfile}
+              />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

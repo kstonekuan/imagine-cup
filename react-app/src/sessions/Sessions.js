@@ -81,57 +81,62 @@ function Connections(props) {
         handleRefresh={handleExitSession}
         routePath={`/sessions`}
       />
-      <div className="columns is-multiline is-variable">
-        <div className="column is-8">
-          <Switch>
-            <Route
-              exact
-              path={`/sessions`}
-              component={() => {
-                return (
-                  <div className="columns">
-                    <div className="column is-half">
-                      <div className="name">To Mentor</div>
-                      <SessionList
-                        errorMessage={null}
-                        sessions={mentorSessions}
-                        handleSelectSession={handleSelectSession}
-                        handleDeleteSession={handleDeleteSession}
-                        isLoading={isLoading}
-                      />
+      {!props.profile && (
+        <div>Please login first.</div>
+      )}
+      {props.profile && (
+        <div className="columns is-multiline is-variable">
+          <div className="column is-8">
+            <Switch>
+              <Route
+                exact
+                path={`/sessions`}
+                component={() => {
+                  return (
+                    <div className="columns">
+                      <div className="column is-half">
+                        <div className="name">To Mentor</div>
+                        <SessionList
+                          errorMessage={null}
+                          sessions={mentorSessions}
+                          handleSelectSession={handleSelectSession}
+                          handleDeleteSession={handleDeleteSession}
+                          isLoading={isLoading}
+                        />
+                      </div>
+                      <div className="column is-half">
+                        <div className="name">To Attend</div>
+                        <SessionList
+                          errorMessage={null}
+                          sessions={menteeSessions}
+                          handleSelectSession={handleSelectSession}
+                          handleDeleteSession={handleDeleteSession}
+                          isLoading={isLoading}
+                        />
+                      </div>
                     </div>
-                    <div className="column is-half">
-                      <div className="name">To Attend</div>
-                      <SessionList
-                        errorMessage={null}
-                        sessions={menteeSessions}
-                        handleSelectSession={handleSelectSession}
-                        handleDeleteSession={handleDeleteSession}
-                        isLoading={isLoading}
-                      />
-                    </div>
-                  </div>
-                );
-              }}
-            />
-            <Route
-              exact
-              path={`/sessions/:id`}
-              component={() => {
-                return (
-                  <SessionDetail
-                    session={selectedSession}
-                    handleExitSession={handleExitSession}
-                    handleSaveSession={handleSaveSession}
-                    profile={props.profile}
-                  />
-                );
-              }}
-            />
-          </Switch>
+                  );
+                }}
+              />
+              <Route
+                exact
+                path={`/sessions/:id`}
+                component={() => {
+                  return (
+                    <SessionDetail
+                      session={selectedSession}
+                      handleExitSession={handleExitSession}
+                      handleSaveSession={handleSaveSession}
+                      profile={props.profile}
+                    />
+                  );
+                }}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
-
+      )}
+      
       {showDeleteModal && (
         <ModalYesNo
           message={`Would you like to cancel this session?`}

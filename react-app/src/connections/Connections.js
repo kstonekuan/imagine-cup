@@ -77,40 +77,45 @@ function Connections(props) {
         handleRefresh={handleExitConnection}
         routePath={`/${props.path}`}
       />
-      <div className="columns is-multiline is-variable">
-        <div className="column is-8">
-          <Switch>
-            <Route
-              exact
-              path={`/${props.path}`}
-              component={() => (
-                <ConnectionList
-                  errorMessage={null}
-                  connections={connections}
-                  handleSelectConnection={handleSelectConnection}
-                  handleDeleteConnection={handleDeleteConnection}
-                  isLoading={isLoading}
-                  path={props.path}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={`/${props.path}/:id`}
-              component={() => {
-                return (
-                  <ConnectionDetail
-                    connection={selectedConnection}
-                    handleExitConnection={handleExitConnection}
+      {!props.profile && (
+        <div>Please login first.</div>
+      )}
+      {props.profile && (
+        <div className="columns is-multiline is-variable">
+          <div className="column is-8">
+            <Switch>
+              <Route
+                exact
+                path={`/${props.path}`}
+                component={() => (
+                  <ConnectionList
+                    errorMessage={null}
+                    connections={connections}
+                    handleSelectConnection={handleSelectConnection}
+                    handleDeleteConnection={handleDeleteConnection}
+                    isLoading={isLoading}
                     path={props.path}
                   />
-                );
-              }}
-            />
-          </Switch>
+                )}
+              />
+              <Route
+                exact
+                path={`/${props.path}/:id`}
+                component={() => {
+                  return (
+                    <ConnectionDetail
+                      connection={selectedConnection}
+                      handleExitConnection={handleExitConnection}
+                      path={props.path}
+                    />
+                  );
+                }}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
-
+      )}
+      
       {showDeleteModal && (
         <ModalYesNo
           message={`Would you like to remove ${connectionToDelete.name} as an active ${props.connectionType}?`}
