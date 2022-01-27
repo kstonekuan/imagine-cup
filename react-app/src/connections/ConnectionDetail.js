@@ -1,50 +1,53 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import { ButtonFooter, TextDetail } from '../components';
+import { ButtonFooter, InputDetail, TextDetail } from '../components';
 
-function MentorDetail({
-  mentor,
-  handleExitMentor,
+function ConnectionDetail({
+  connection,
+  handleExitConnection,
+  path
 }) {
 
   return (
     <div className="card edit-detail">
       <header className="card-header">
         <p className="card-header-title">
-          {mentor.name}
+          {connection.name}&apos;s details
           &nbsp;
         </p>
       </header>
       <div className="card-content">
         <div className="content">
           <TextDetail
-            name="name"
-            value={mentor.name}
-          />
-          <TextDetail
             name="email"
-            value={mentor.email}
+            value={connection.email}
           />
           <TextDetail
             name="mobile"
-            value={mentor.mobile}
+            value={connection.mobile}
           />
           <TextDetail
             name="summary"
-            value={mentor.summary}
+            value={connection.summary}
           />
           <TextDetail
             name="Social"
-            value={mentor.social}
+            value={connection.social}
           />
+          {path == 'mentees' && (
+            <InputDetail
+              name="Notes (only visible to you)"
+              placeholder="TBC"
+            />
+          )}
         </div>
       </div>
       <footer className="card-footer ">
         <ButtonFooter
           className="cancel-button"
           iconClasses="fas fa-undo"
-          onClick={handleExitMentor}
+          onClick={handleExitConnection}
           label="Exit"
         />
       </footer>
@@ -52,4 +55,4 @@ function MentorDetail({
   );
 }
 
-export default withRouter(MentorDetail);
+export default withRouter(ConnectionDetail);

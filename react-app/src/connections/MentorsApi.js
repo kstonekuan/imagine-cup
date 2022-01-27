@@ -38,6 +38,7 @@ export const getMentors = async (profile) => {
         console.log(resp);
         return resp.data;
     } catch (error) {
+        console.error(error);
         console.error('Mentors could not be found');
         return undefined;
     }
@@ -48,6 +49,7 @@ export const addMentor = async (mentor, profile) => {
         await createMentorApi(mentor, profile);
         return mentor;
       } catch (error) {
+        console.error(error);
         console.error('Could not add mentor');
         return undefined;
       }
@@ -58,6 +60,7 @@ export const removeMentor = async (mentor) => {
         await updateMentorApi(mentor, false);
         return mentor
     } catch (error) {
+        console.error(error);
         console.error('Could not remove mentor');
         return undefined;
     }
