@@ -7,6 +7,7 @@ const About = () => (
       <p>
         Menty is the tool for the amateur mentor.
       </p>
+      <br/>
       <ul>
         <li>
           Organize mentoring sessions efficiently
