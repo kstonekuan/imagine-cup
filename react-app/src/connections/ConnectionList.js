@@ -3,64 +3,64 @@ import { withRouter } from 'react-router';
 
 import { ButtonFooter, CardContent } from '../components';
 
-function ProductList({
-  handleDeleteMentor,
-  handleSelectMentor,
-  mentors,
+function ConnectionList({
+  handleDeleteConnection,
+  handleSelectConnection,
+  connections,
   history,
   errorMessage,
   isLoading,
   path,
 }) {
-  function selectMentor(e) {
-    const mentor = getSelectedMentor(e);
-    handleSelectMentor(mentor);
-    history.push(`/${path}/${mentor.id}`);
+  function selectConnection(e) {
+    const connection = getSelectedConnection(e);
+    handleSelectConnection(connection);
+    history.push(`/${path}/${connection.id}`);
   }
 
-  function deleteMentor(e) {
-    const mentor = getSelectedMentor(e);
-    handleDeleteMentor(mentor);
+  function deleteConnection(e) {
+    const connection = getSelectedConnection(e);
+    handleDeleteConnection(connection);
   }
 
-  function getSelectedMentor(e) {
+  function getSelectedConnection(e) {
     const index = +e.currentTarget.dataset.index;
-    return mentors[index];
+    return connections[index];
   }
 
   return (
     <div>
       {errorMessage && <div>{errorMessage}</div>}
-      {(!mentors || isLoading) && !errorMessage && (
+      {(!connections || isLoading) && !errorMessage && (
         <div>Loading data ...</div>
       )}
-      {!isLoading && mentors && !mentors.length && (
+      {!isLoading && connections && !connections.length && (
         <div>No {path} yet</div>
       )}
       <ul className="list">
-        {!isLoading && mentors && mentors.map((mentor, index) => (
-          <li key={mentor.id} role="presentation">
+        {!isLoading && connections && connections.map((connection, index) => (
+          <li key={connection.id} role="presentation">
             <div className="card">
               <CardContent
-                name={mentor.name}
-                description={mentor.summary}
+                name={connection.name}
+                description={connection.summary}
               />
               <footer className="card-footer">
                 <ButtonFooter
                   className="delete-item"
                   iconClasses="fas fa-trash"
-                  onClick={deleteMentor}
+                  onClick={deleteConnection}
                   label="Remove"
                   dataIndex={index}
-                  dataId={mentor.id}
+                  dataId={connection.id}
                 />
                 <ButtonFooter
                   className="edit-item"
                   iconClasses="fas fa-edit"
-                  onClick={selectMentor}
+                  onClick={selectConnection}
                   label="View"
                   dataIndex={index}
-                  dataId={mentor.id}
+                  dataId={connection.id}
                 />
               </footer>
             </div>
@@ -71,4 +71,4 @@ function ProductList({
   );
 }
 
-export default withRouter(ProductList);
+export default withRouter(ConnectionList);

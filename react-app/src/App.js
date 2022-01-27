@@ -6,15 +6,16 @@ import { withRouter } from 'react-router';
 import { HeaderBar, NavBar, NotFound } from './components';
 import About from './About';
 import { getProfile, updateProfile } from './profile/ProfileApi';
-import { getMentors, addMentor, removeMentor } from './mentors/MentorsApi';
-import { getMentees, addMentee, removeMentee } from './mentors/MenteesApi';
+import { getMentors, addMentor, removeMentor } from './connections/MentorsApi';
+import { getMentees, addMentee, removeMentee } from './connections/MenteesApi';
 
 const Products = withRouter(lazy(() => import('./products/Products')));
-const Mentors = withRouter(lazy(() => import('./mentors/Mentors')));
+const Connections = withRouter(lazy(() => import('./connections/Connections')));
 const Profile = withRouter(lazy(() => import('./profile/Profile')));
 const Home = withRouter(lazy(() => import('./home/Home')));
 const Requests = withRouter(lazy(() => import('./requests/Requests')));
 const Sessions = withRouter(lazy(() => import('./sessions/Sessions')));
+const Questions = withRouter(lazy(() => import('./questions/Questions')));
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
 
     this.state = {
       profile: undefined,
+      isLoading: true,
       hasError: false
     }
 
@@ -29,7 +31,9 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ profile: await getProfile() });
+    const profile = await getProfile();
+    if (profile) this.setState({ profile: profile });
+    this.setState({ isLoading: false });
   }
 
   componentDidCatch(error, info) {
@@ -60,7 +64,7 @@ class App extends Component {
       <div>
         <HeaderBar />
         <div className="section columns">
-          <NavBar profile={this.state.profile} />
+          <NavBar profile={this.state.profile} isLoading={this.state.isLoading} />
           <main className="column">
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
@@ -73,33 +77,34 @@ class App extends Component {
                 <Route
                   path="/mentors" 
                   component={() => (
-                    <Mentors 
+                    <Connections 
                       profile={this.state.profile}
                       title="Mentors"
                       connectionType="mentor"
                       path="mentors"
-                      getMentors={getMentors}
-                      addMentor={addMentor}
-                      removeMentor={removeMentor}
+                      getConnections={getMentors}
+                      addConnection={addMentor}
+                      removeConnection={removeMentor}
                     />
                   )}
                 />
                 <Route
                   path="/mentees" 
                   component={() => (
-                    <Mentors 
+                    <Connections 
                       profile={this.state.profile}
                       title="Mentees"
                       connectionType="mentee"
                       path="mentees"
-                      getMentors={getMentees}
-                      addMentor={addMentee}
-                      removeMentor={removeMentee}
+                      getConnections={getMentees}
+                      addConnection={addMentee}
+                      removeConnection={removeMentee}
                     />
                   )}
                 />
                 <Route path="/requests" component={() => (<Requests profile={this.state.profile} />)} />
                 <Route path="/sessions" component={() => (<Sessions profile={this.state.profile} />)} />
+                <Route path="/questions" component={() => (<Questions profile={this.state.profile} />)} />
 
                 <Route exact path="**" component={NotFound} />
               </Switch>

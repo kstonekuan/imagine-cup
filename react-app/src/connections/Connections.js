@@ -2,36 +2,36 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { ListHeader, ModalYesNo, ModalInput } from '../components';
-import MentorDetail from './MentorDetail';
-import MentorList from './MentorList';
+import ConnectionDetail from './ConnectionDetail';
+import ConnectionList from './ConnectionList';
 
-function Mentors(props) {
-  const [mentorToDelete, setMentorToDelete] = useState(null);
-  const [mentorToAdd, setMentorToAdd] = useState(null);
+function Connections(props) {
+  const [connectionToDelete, setConnectionToDelete] = useState(null);
+  const [connectionToAdd, setConnectionToAdd] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [mentors, setMentors] = useState(null);
-  const [selectedMentor, setSelectedMentor] = useState(null);
+  const [connections, setConnections] = useState(null);
+  const [selectedConnection, setSelectedConnection] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    setMentors(await props.getMentors(props.profile));
-    console.log(mentors);
+    setConnections(await props.getConnections(props.profile));
+    console.log(connections);
     setIsLoading(false);
   }, []);
 
-  async function handleExitMentor() {
+  async function handleExitConnection() {
     props.history.push(`/${props.path}`);
     handleCloseModal();
-    setSelectedMentor(null);
-    setMentorToDelete(null);
-    setMentorToAdd(null);
-    setMentors(await props.getMentors(props.profile));
+    setSelectedConnection(null);
+    setConnectionToDelete(null);
+    setConnectionToAdd(null);
+    setConnections(await props.getConnections(props.profile));
   }
 
-  function handleDeleteMentor(mentor) {
-    setSelectedMentor(null);
-    setMentorToDelete(mentor);
+  function handleDeleteConnection(connection) {
+    setSelectedConnection(null);
+    setConnectionToDelete(connection);
     setShowDeleteModal(true);
   }
 
@@ -41,15 +41,15 @@ function Mentors(props) {
   }
 
   async function handleDeleteFromModal() {
-    const res = await props.removeMentor(mentorToDelete);
+    const res = await props.removeConnection(connectionToDelete);
     if (!res) {
       // Failure msg
     }
-    handleExitMentor();
+    await handleExitConnection();
   }
 
-  function handleSelectMentor(selected) {
-    setSelectedMentor(selected);
+  function handleSelectConnection(selected) {
+    setSelectedConnection(selected);
     console.log(`you selected ${selected.name}`);
   }
 
@@ -58,15 +58,15 @@ function Mentors(props) {
   }
 
   async function handleAddFromModal() {
-    const res = await props.addMentor(mentorToAdd, props.profile);
+    const res = await props.addConnection(connectionToAdd, props.profile);
     if (!res) {
       // Failure msg
     }
-    handleExitMentor();
+    await handleExitConnection();
   }
 
   function handleInputFromModal(e) {
-    setMentorToAdd({ id: e.target.value });
+    setConnectionToAdd({ id: e.target.value });
   }
 
   return (
@@ -74,7 +74,7 @@ function Mentors(props) {
       <ListHeader
         title={props.title}
         handleAdd={handleAdd}
-        handleRefresh={handleExitMentor}
+        handleRefresh={handleExitConnection}
         routePath={`/${props.path}`}
       />
       <div className="columns is-multiline is-variable">
@@ -84,12 +84,11 @@ function Mentors(props) {
               exact
               path={`/${props.path}`}
               component={() => (
-                <MentorList
+                <ConnectionList
                   errorMessage={null}
-                  mentors={mentors}
-                  selectedMentor={selectedMentor}
-                  handleSelectMentor={handleSelectMentor}
-                  handleDeleteMentor={handleDeleteMentor}
+                  connections={connections}
+                  handleSelectConnection={handleSelectConnection}
+                  handleDeleteConnection={handleDeleteConnection}
                   isLoading={isLoading}
                   path={props.path}
                 />
@@ -100,9 +99,10 @@ function Mentors(props) {
               path={`/${props.path}/:id`}
               component={() => {
                 return (
-                  <MentorDetail
-                    mentor={selectedMentor}
-                    handleExitMentor={handleExitMentor}
+                  <ConnectionDetail
+                    connection={selectedConnection}
+                    handleExitConnection={handleExitConnection}
+                    path={props.path}
                   />
                 );
               }}
@@ -113,7 +113,7 @@ function Mentors(props) {
 
       {showDeleteModal && (
         <ModalYesNo
-          message={`Would you like to remove ${mentorToDelete.name} as an active ${props.connectionType}?`}
+          message={`Would you like to remove ${connectionToDelete.name} as an active ${props.connectionType}?`}
           onNo={handleCloseModal}
           onYes={handleDeleteFromModal}
         />
@@ -131,4 +131,4 @@ function Mentors(props) {
   );
 }
 
-export default Mentors;
+export default Connections;
