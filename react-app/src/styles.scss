@@ -137,21 +137,21 @@ header {
   }
   ul {
     list-style-type: disc;
-    padding-left:0.5em;
+    padding-left:1.5em;
   }
 }
 ul.list {
   box-shadow: none;
 }
 div.card-content {
-  background-color: $shade-light;
+  background-color: rgb(233, 197, 238);
   .name {
     font-size: 28px;
     color: #000;
   }
   .description {
     font-size: 20px;
-    color: #999;
+    color: rgb(95, 95, 95);
   }
   background-color: $shade-light;
 }
