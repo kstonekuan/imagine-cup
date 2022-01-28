@@ -8,7 +8,8 @@ module.exports = async function (context, req) {
 
         const res = await pool.query(`
             update Profiles
-            set Name = '${req.body.name}', Email = '${req.body.email}', Mobile = '${req.body.mobile}', Social = '${req.body.social}', Summary = '${req.body.summary}'
+            set Name = '${req.body.name}', Email = '${req.body.email}', 
+                Mobile = '${req.body.mobile}', Social = '${req.body.social}', Summary = '${req.body.summary}'
             where ProfileId = ${parseInt(req.params.id, 10)};
         `);
 
@@ -16,6 +17,7 @@ module.exports = async function (context, req) {
 
         context.res.status(200);
     }  catch (error) {
+        context.log(error)
         context.res.status(500).send(error);
     }
 }

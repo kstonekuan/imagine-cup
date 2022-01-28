@@ -143,6 +143,9 @@ header {
       color: $link;
     }
   }
+  ul {
+    list-style-type: disc;
+  }
 }
 ul.list {
   box-shadow: none;

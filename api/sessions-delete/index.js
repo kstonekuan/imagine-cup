@@ -1,5 +1,4 @@
 const sql = require('mssql')
-const providers = require('../shared/providers');
 
 const AZURE_CONN_STRING = process.env["AzureSQLConnectionString"];
 
@@ -8,15 +7,15 @@ module.exports = async function (context, req) {
         const pool = await sql.connect(AZURE_CONN_STRING);
 
         const res = await pool.query(`
-            insert into Profiles (${providers.PROVIDERS_MAP[req.body.provider]})
-            values ('${req.body.providerId}');
+            delete from Sessions
+            where SessionId = ${parseInt(req.params.id, 10)};
         `);
 
         context.log(res);
 
-        context.res.status(201);
+        context.res.status(200);
     }  catch (error) {
-        context.log(error)
+      context.log(error)
         context.res.status(500).send(error);
     }
 }

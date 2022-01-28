@@ -29,6 +29,9 @@ export const getProfile = async () => {
     try {
       const authResponse = await fetch('/.auth/me');
       const payload = await authResponse.json();
+
+      if (!payload.clientPrincipal) return undefined;
+
       let profile = {
         provider: payload.clientPrincipal.identityProvider,
         providerId: payload.clientPrincipal.userId 
@@ -44,6 +47,7 @@ export const getProfile = async () => {
 
       return profile;
     } catch (error) {
+      console.error(error);
       console.error('No profile could be found');
       return undefined;
     }
@@ -54,6 +58,7 @@ export const updateProfile = async (profile) => {
       await updateProfileApi(profile)
       return profile;
     } catch (error) {
+      console.error(error);
       console.error('Could not update profile');
       return undefined;
     }

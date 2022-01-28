@@ -60,9 +60,6 @@ const NavBar = (props) => {
           <NavLink to="/about" activeClassName="active-link">
             About
           </NavLink>
-          <NavLink to="/products" activeClassName="active-link">
-            Products
-          </NavLink>
           <NavLink to="/profile" activeClassName="active-link">
             Profile
           </NavLink>
@@ -76,22 +73,32 @@ const NavBar = (props) => {
             Sessions
           </NavLink>
           <NavLink to="/requests" activeClassName="active-link">
-            Requests
+            Requests (TODO)
+          </NavLink>
+          <NavLink to="/questions" activeClassName="active-link">
+            Questions (TODO)
           </NavLink>
         </ul>
         {props.children}
       </nav>
       <nav className="menu auth">
-        <p className="menu-label">Auth</p>
-        <div className="menu-list auth">
-          {!props.profile &&
-            providers.map((provider) => (
-              <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
-                {provider}
-              </a>
-            ))}
-          {props.profile && <a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}
-        </div>
+        {props.isLoading && (
+          <div className="menu-label"> Loading data... </div>
+        )}
+        {!props.isLoading && (
+          <div>
+            <p className="menu-label">Login</p>
+            <div className="menu-list auth">
+              {!props.profile &&
+                providers.map((provider) => (
+                  <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
+                    {provider}
+                  </a>
+                ))}
+              {props.profile && <a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}
+            </div>
+          </div>
+        )}
       </nav>
       {
         props.profile && (
