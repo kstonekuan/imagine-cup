@@ -25,6 +25,10 @@ const About = () => (
           Keep in contact with past mentors and mentees
         </li>
       </ul>
+      <br/>
+      <p>
+        Project code can be found <a href="https://github.com/kstonekuan/imagine-cup">here</a>.
+      </p>
     </div>
   </div>
 );
