@@ -26,6 +26,16 @@ The frontend web app is written in JavaScript and uses ReactJS. This is deployed
 
 https://jolly-stone-05341b200.azurestaticapps.net/home
 
+## Local Development
+
+To run the app locally first run `npm start` in the `react-app` folder.
+After the server has started, we need to start the Azure Functions as well as 
+proxy through the Static Web Apps authentication by using:
+
+```bash
+swa start http://localhost:3000 --api-location ./api
+```
+
 ## References
 
 Code adapted from:
