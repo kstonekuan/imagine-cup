@@ -25,16 +25,12 @@ const NavBar = (props) => {
   //   }
   // }
 
-  const sidebarCollapsed = localStorage.getItem('sidebar-collasped');
-  const isCollapsed = useState(sidebarCollapsed ? true : false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const handleToggler = () => {
-    if (!isCollapsed) {
-      localStorage.setItem('sidebar-collasped', true);
-      console.log('closed');
-      return;
-    }
-    localStorage.removeItem('sidebar-collasped');
+  const handleToggler = (e) => {
+    setIsCollapsed(~isCollapsed);
+    e.blur();
+    console.log(isCollapsed);
   };
 
   return (
@@ -44,8 +40,10 @@ const NavBar = (props) => {
         
         <div className="menu-header">
           <button>
-            <img 
+            <input 
+              type="image"
               src={menu}
+              id='menuButton'
               alt='menu'
               className="sidebar-icon"
               onClick={handleToggler}
