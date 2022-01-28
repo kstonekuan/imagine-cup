@@ -16,6 +16,20 @@ $shade-light: #fafafa;
 
 @import 'bulma/bulma.sass';
 
+.sidebar{
+  height: 100%;
+}
+
+.sidebar-icon {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.collapsed .menu-list, .collapsed .menu-label{
+  display: none;
+}
+//end collapsed sidebar
+
 .menu-list .active-link,
 .menu-list .router-link-active {
   color: #fff;
@@ -49,7 +63,7 @@ $shade-light: #fafafa;
 
 header {
   font-weight: bold;
-  font-family: Arial;
+  font-family: Helvetica;
   span {
     letter-spacing: 0px;
     &.brand-first {
@@ -101,7 +115,7 @@ header {
 .content-title-group {
   margin-bottom: 16px;
   h2 {
-    border-left: 16px solid $primary;
+    border-left: 8px solid $primary;
     border-bottom: 2px solid $primary;
     padding-left: 8px;
     padding-right: 16px;
@@ -122,22 +136,22 @@ header {
   }
   ul {
     list-style-type: disc;
+    padding-left:1.5em;
   }
 }
 ul.list {
   box-shadow: none;
 }
 div.card-content {
-  background-color: $shade-light;
+  background-color: #ecf3f4;
   .name {
     font-size: 28px;
     color: #000;
   }
   .description {
     font-size: 20px;
-    color: #999;
+    color: rgb(95, 95, 95);
   }
-  background-color: $shade-light;
 }
 .card {
   margin-bottom: 2em;

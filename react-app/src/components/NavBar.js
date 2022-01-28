@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import menu from '../menu.png';
 
 const NavBar = (props) => {
   // const [userInfo, setUserInfo] = useState();
@@ -24,10 +25,34 @@ const NavBar = (props) => {
   //   }
   // }
 
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const handleToggler = (e) => {
+    setIsCollapsed(~isCollapsed);
+    e.target.blur();
+    console.log(isCollapsed);
+  };
+
   return (
-    <div className="column is-2">
+    //<div className="column is-2 sidebar">
+    <div className={isCollapsed ? 'collapsed' : 'sidebar'}>
       <nav className="menu">
-        <p className="menu-label">Menu</p>
+        
+        <div className="menu-header">
+          <button>
+            <input 
+              type="image"
+              src={menu}
+              id='menuButton'
+              alt='menu'
+              className="sidebar-icon"
+              onClick={handleToggler}
+            />
+          </button>       
+          <p className="menu-label">Menu</p>
+        </div>
+
+
         <ul className="menu-list">
         <NavLink to="/home" activeClassName="active-link">
             Home
