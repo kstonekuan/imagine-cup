@@ -96,7 +96,7 @@ const NavBar = (props) => {
             <p className="menu-label">Login</p>
             <div className="menu-list auth">
               {!props.profile &&
-                Array.from(providers).map(([provider, displayName]) => (
+                Object.entries(providers).map(([provider, displayName]) => (
                   <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
                     {displayName}
                   </a>
