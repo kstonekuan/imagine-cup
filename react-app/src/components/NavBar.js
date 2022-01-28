@@ -29,7 +29,7 @@ const NavBar = (props) => {
 
   const handleToggler = (e) => {
     setIsCollapsed(~isCollapsed);
-    e.blur();
+    e.target.blur();
     console.log(isCollapsed);
   };
 
