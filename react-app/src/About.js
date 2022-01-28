@@ -19,7 +19,7 @@ const About = () => (
           QnA at anytime
         </li>
         <li>
-          Earn from subscriptions by getting certified or through income-share agreements
+          Earn from subscriptions or income-share agreements
         </li>
         <li>
           Keep in contact with past mentors and mentees

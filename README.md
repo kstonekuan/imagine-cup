@@ -5,12 +5,12 @@ Menty is the tool for the amateur mentor.
 - Organize mentoring sessions efficiently
 - Resources to help users structure discussions
 - Q&A at anytime
-- Earn from subscriptions by getting certified or through income-share agreements
+- Earn from subscriptions or income-share agreements
 - Keep in contact with past mentors and mentees
 
 According to a study in 2019, "76% of people think mentors are important, however, only 37% of people currently have one." ([Forbes](https://www.forbes.com/sites/christinecomaford/2019/07/03/new-study-76-of-people-think-mentors-are-important-but-only-37-have-one/?sh=10f46e424329))
 
-This means that there are large pools of underutilised talents as mentors. With Menty, we can improve accessibility to knowledge, information, wisdom, and opportunities for many people.
+This means that there are large pools of underutilised talents as mentors. With Menty, we can improve accessibility to information and opportunities for many people.
 
 ## Tech Stack
 
@@ -24,7 +24,7 @@ The backend API is written in JavaScript and deployed to Azure Functions where i
 
 The frontend web app is written in JavaScript and uses ReactJS. This is deployed to Azure Static Web Apps through GitHub Actions. Available at:
 
-https://jolly-stone-05341b200.azurestaticapps.net/home
+https://jolly-stone-05341b200.azurestaticapps.net
 
 ## Local Development
 
