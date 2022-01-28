@@ -9,10 +9,6 @@
       "allowedRoles": ["authenticated"]
     },
     {
-      "route": "/profile/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/api/mentors/*",
       "allowedRoles": ["authenticated"]
     }
