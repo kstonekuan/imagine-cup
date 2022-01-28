@@ -4,7 +4,13 @@ import menu from '../menu.png';
 
 const NavBar = (props) => {
   // const [userInfo, setUserInfo] = useState();
-  const providers = ['google', 'facebook', 'twitter', 'github', 'aad'];
+  const providers = {
+    'aad': 'Microsoft',
+    'facebook': 'Facebook',
+    'google': 'Google',
+    'twitter': 'Twitter',
+    'github': 'GitHub',
+  };
   const redirect = window.location.pathname;
 
   // useEffect(() => {
@@ -90,9 +96,9 @@ const NavBar = (props) => {
             <p className="menu-label">Login</p>
             <div className="menu-list auth">
               {!props.profile &&
-                providers.map((provider) => (
+                Array.from(providers).map(([provider, displayName]) => (
                   <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
-                    {provider}
+                    {displayName}
                   </a>
                 ))}
               {props.profile && <a href={`/.auth/logout?post_logout_redirect_uri=${redirect}`}>Logout</a>}
