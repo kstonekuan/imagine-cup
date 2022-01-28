@@ -5,10 +5,6 @@
   },
   "routes": [
     {
-      "route": "/.auth/login/aad",
-      "statusCode": 404
-    },
-    {
       "route": "/api/profile/*",
       "allowedRoles": ["authenticated"]
     },
