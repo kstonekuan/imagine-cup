@@ -83,7 +83,7 @@ function SessionDetail({
           )}
           {!session.id && mentees && !isLoading && (
             <SelectDetail
-              name="mentee"
+              name="Mentee"
               placeholder="select mentee"
               options={mentees}
               propertyName="name"
@@ -91,44 +91,44 @@ function SessionDetail({
             />
           )}
           <DateTimeDetail
-            name="timeslot"
+            name="Timeslot"
             value={session.timeslot ? new Date(session.timeslot) : new Date()}
             readOnly={!session.isMentor}
             onChange={handleTimeslotChange}
           />
           <InputDetail
-            name="length (minutes)"
+            name="Length (Minutes)"
             value={session.lengthMinutes}
             placeholder="15 by default"
             readOnly={!session.isMentor}
             onChange={handleLengthChange}
           />
           <InputDetail
-            name="link"
+            name="Link"
             value={session.link}
             readOnly={!session.isMentor}
             onChange={handleLinkChange}
           />
           <InputDetail
-            name="mentor agenda"
+            name="Mentor Agenda"
             value={session.mentor && session.mentor.agenda}
             readOnly={!session.isMentor}
             onChange={handleMentorAgendaChange}
           />
           <InputDetail
-            name="mentor feedback"
+            name="Mentor Feedback"
             value={session.mentor && session.mentor.feedback}
             readOnly={!session.isMentor}
             onChange={handleMentorFeedbackChange}
           />
           <InputDetail
-            name="mentee agenda"
+            name="Mentee Agenda"
             value={session.mentee && session.mentee.agenda}
             readOnly={session.isMentor}
             onChange={handleMenteeAgendaChange}
           />
           <InputDetail
-            name="mentee feedback"
+            name="Mentee Feedback"
             value={session.mentee && session.mentee.feedback}
             readOnly={session.isMentor}
             onChange={handleMenteeFeedbackChange}

@@ -44,36 +44,36 @@ function ProfileDetail({
       <div className="card-content">
         <div className="content">
           <InputDetail 
-            name="id" 
+            name="Id" 
             value={profile.id} 
             readOnly="true" 
           />
           <InputDetail
-            name="name"
+            name="Name"
             value={profile.name}
             placeholder="Alan Turing"
             onChange={handleNameChange}
           />
           <InputDetail
-            name="email"
+            name="Email"
             value={profile.email}
             placeholder="alan@gmail.com"
             onChange={handleEmailChange}
           />
           <InputDetail
-            name="mobile"
+            name="Mobile"
             value={profile.mobile}
             placeholder="987654321"
             onChange={handleMobileChange}
           />
           <InputDetail
-            name="summary"
+            name="Summary"
             value={profile.summary}
             placeholder="Professional CS Wizard"
             onChange={handleSummaryChange}
           />
           <InputDetail
-            name="social"
+            name="Social"
             value={profile.social}
             placeholder="LinkedIn, WhatsApp, Telegram..."
             onChange={handleSocialChange}

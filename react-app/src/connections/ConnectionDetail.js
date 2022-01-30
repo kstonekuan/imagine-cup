@@ -20,15 +20,15 @@ function ConnectionDetail({
       <div className="card-content">
         <div className="content">
           <TextDetail
-            name="email"
+            name="Email"
             value={connection.email}
           />
           <TextDetail
-            name="mobile"
+            name="Mobile"
             value={connection.mobile}
           />
           <TextDetail
-            name="summary"
+            name="Summary"
             value={connection.summary}
           />
           <TextDetail
